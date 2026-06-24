@@ -1,0 +1,475 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Harikarthik A | Experience</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Bebas+Neue&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* ── PAGE HERO ── */
+    .page-hero {
+      padding: 160px 0 80px;
+      background: var(--cream);
+      position: relative; overflow: hidden;
+    }
+    .page-hero::before {
+      content: 'CAREER';
+      font-family: var(--font-display);
+      font-size: clamp(6rem, 18vw, 16rem);
+      color: rgba(0,0,0,0.03);
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      white-space: nowrap; pointer-events: none; user-select: none;
+    }
+    .page-hero .container { position: relative; z-index: 1; }
+    .page-hero-label { font-family: var(--font-display); font-size: clamp(3.5rem, 10vw, 7rem); color: var(--ink); line-height: 1; }
+    .page-hero-sub { margin-top: 16px; color: var(--muted); font-size: 1.05rem; max-width: 480px; line-height: 1.7; }
+
+    /* ── EXPERIENCE LAYOUT ── */
+    .exp-section { background: var(--white); padding: 80px 0 100px; }
+
+    .experience-layout {
+      display: grid;
+      grid-template-columns: 300px 1fr;
+      gap: 40px;
+      align-items: start;
+    }
+
+    /* ── SIDEBAR ── */
+    .roles-sidebar {
+      position: sticky; top: 100px;
+      display: flex; flex-direction: column; gap: 10px;
+    }
+    .roles-header {
+      font-size: 0.72rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 2px; color: var(--muted);
+      display: flex; align-items: center; gap: 8px;
+      margin-bottom: 6px; padding-left: 4px;
+    }
+
+    .role-tab {
+      background: var(--white); border: 1.5px solid var(--border);
+      border-radius: 18px; padding: 18px 20px;
+      cursor: pointer; display: flex; gap: 14px; align-items: flex-start;
+      position: relative; overflow: hidden;
+      transition: all .35s var(--ease);
+    }
+    .role-tab:hover { border-color: rgba(0,0,0,0.16); transform: translateX(6px); }
+    .role-tab.active {
+      background: var(--blue-light); border: 2px solid var(--blue);
+      box-shadow: 0 8px 24px rgba(37,99,235,0.1);
+    }
+
+    /* Arrow indicator */
+    .role-tab::after {
+      content: '\f054';
+      font-family: 'Font Awesome 6 Free'; font-weight: 900;
+      position: absolute; right: 16px; top: 50%; transform: translateY(-50%) translateX(-6px);
+      color: var(--blue); opacity: 0; font-size: 0.75rem;
+      transition: all .3s var(--ease);
+    }
+    .role-tab.active::after { opacity: 1; transform: translateY(-50%) translateX(0); }
+
+    .tab-icon {
+      width: 44px; height: 44px; border-radius: 10px;
+      background: var(--white); box-shadow: var(--shadow-sm);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; overflow: hidden; padding: 4px;
+    }
+    .tab-icon img { width: 100%; height: 100%; object-fit: contain; }
+
+    .tab-meta { flex: 1; min-width: 0; padding-right: 20px; }
+    .role-title { font-size: 0.95rem; font-weight: 800; color: var(--ink); margin-bottom: 2px; }
+    .company-name { font-size: 0.8rem; color: var(--muted); font-weight: 600; margin-bottom: 8px; }
+
+    .tab-date {
+      display: inline-flex; align-items: center; gap: 5px;
+      font-size: 0.72rem; font-weight: 700; color: #7c3aed;
+      background: #faf5ff; padding: 3px 9px; border-radius: 6px;
+      margin-bottom: 8px;
+    }
+    .mini-tags { display: flex; gap: 5px; flex-wrap: wrap; }
+    .mini-tag {
+      font-size: 0.68rem; font-weight: 600; color: var(--muted);
+      background: var(--cream); border: 1px solid var(--border);
+      padding: 2px 8px; border-radius: 4px;
+    }
+
+    /* ── DETAIL PANEL ── */
+    .role-details { min-width: 0; }
+    .role-panel {
+      display: none; background: var(--white);
+      border: 1px solid var(--border); border-radius: 24px;
+      padding: 44px; box-shadow: var(--shadow-sm);
+      animation: panelIn .45s var(--ease) forwards;
+    }
+    .role-panel.active { display: block; }
+    @keyframes panelIn {
+      from { opacity: 0; transform: translateY(18px); filter: blur(6px); }
+      to   { opacity: 1; transform: translateY(0);    filter: blur(0); }
+    }
+
+    /* Panel header */
+    .panel-logo-row { display: flex; align-items: center; gap: 14px; margin-bottom: 24px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+    .panel-logo {
+      width: 52px; height: 52px; border-radius: 12px;
+      background: var(--white); box-shadow: var(--shadow-sm);
+      padding: 5px; display: flex; align-items: center; justify-content: center; overflow: hidden;
+    }
+    .panel-logo img { width: 100%; object-fit: contain; }
+    .panel-logo-text .role-label { font-size: 0.8rem; color: var(--muted); font-weight: 600; }
+    .panel-logo-text .company-label { font-size: 1rem; font-weight: 800; color: var(--ink); }
+
+    .panel-title { font-size: clamp(1.6rem, 4vw, 2.2rem); font-weight: 800; color: var(--ink); margin-bottom: 6px; line-height: 1.2; }
+    .panel-company-row {
+      display: flex; align-items: center; gap: 12px;
+      font-size: 1rem; color: var(--muted); margin-bottom: 22px;
+      font-weight: 600;
+    }
+    .panel-company-row a {
+      display: inline-flex; align-items: center; gap: 5px;
+      font-size: 0.85rem; color: var(--blue); font-weight: 700;
+    }
+    .panel-company-row a:hover { text-decoration: underline; }
+
+    .meta-pills { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 28px; }
+    .meta-pill {
+      display: inline-flex; align-items: center; gap: 7px;
+      padding: 8px 16px; border-radius: 10px;
+      font-size: 0.85rem; font-weight: 700;
+    }
+    .meta-pill.date { background: #fdf4ff; color: #a21caf; border: 1px solid #f0abfc; }
+    .meta-pill.loc  { background: var(--blue-light); color: var(--blue); border: 1px solid #bfdbfe; }
+
+    .panel-desc { font-size: 1rem; line-height: 1.8; color: var(--text); margin-bottom: 28px; }
+    .panel-desc strong { color: var(--ink); }
+
+    /* Skills */
+    .panel-section-label {
+      font-size: 0.72rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 1.5px; color: var(--muted);
+      display: flex; align-items: center; gap: 8px;
+      margin: 28px 0 14px;
+    }
+    .panel-section-label::before {
+      content: ''; width: 16px; height: 2px; background: currentColor; border-radius: 2px;
+    }
+
+    .skills-wrap {
+      display: flex; flex-wrap: wrap; gap: 9px;
+      background: var(--cream); border: 1px solid var(--border);
+      border-radius: 14px; padding: 18px;
+      margin-bottom: 28px;
+    }
+    .skill-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--white); border: 1.5px solid var(--border);
+      border-radius: 100px; padding: 6px 14px;
+      font-size: 0.82rem; font-weight: 700; color: var(--ink);
+      transition: border-color .2s, color .2s;
+    }
+    .skill-badge:hover { border-color: var(--blue); color: var(--blue); }
+
+    /* Contributions */
+    .contrib-list { display: flex; flex-direction: column; gap: 12px; }
+    .contrib-item {
+      display: flex; gap: 12px;
+      background: var(--cream); border: 1px solid var(--border);
+      border-radius: 14px; padding: 16px 18px;
+      font-size: 0.93rem; color: var(--text); line-height: 1.65;
+    }
+    .contrib-item .ci-icon { color: var(--blue); flex-shrink: 0; margin-top: 2px; font-size: 0.85rem; }
+    .contrib-item strong { color: var(--ink); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 960px) {
+      .experience-layout { grid-template-columns: 1fr; }
+      .roles-sidebar {
+        position: static; flex-direction: row;
+        overflow-x: auto; padding-bottom: 6px;
+        scroll-snap-type: x mandatory;
+        gap: 10px;
+      }
+      .role-tab { min-width: 250px; flex-shrink: 0; scroll-snap-align: start; }
+      .role-tab:hover { transform: none; }
+      .role-tab::after { display: none; }
+    }
+    @media (max-width: 600px) {
+      .role-panel { padding: 28px; }
+      .panel-title { font-size: 1.5rem; }
+    }
+  </style>
+</head>
+<body class="loading">
+
+<div id="preloader"><div class="loader-ring"></div></div>
+
+<!-- NAVBAR -->
+<div class="nav-wrapper">
+  <nav class="navbar" id="mainNav">
+    <div class="nav-links" id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="index.html#about">About</a>
+      <a href="projects.html">Projects</a>
+      <a href="experience.html" class="active">Experience</a>
+      <a href="achievements.html">Achievements</a>
+      <a href="index.html#contact">Contact</a>
+      <a href="Harikarthik_Updated_Resume.pdf" target="_blank" class="nav-resume-btn"><i class="fas fa-file-alt"></i> Resume</a>
+    </div>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode"><i class="fas fa-moon icon-moon"></i><i class="fas fa-sun icon-sun"></i></button>
+    <button class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></button>
+  </nav>
+</div>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="container fade-in-up">
+    <span class="eyebrow">Career</span>
+    <h1 class="page-hero-label">Experience</h1>
+    <p class="page-hero-sub">Internships where I shipped real AI products, built full-stack systems, and worked across security and front-end domains.</p>
+  </div>
+</div>
+
+<!-- EXPERIENCE -->
+<section class="exp-section">
+  <div class="container">
+    <div class="experience-layout fade-in-up">
+
+      <!-- SIDEBAR -->
+      <div class="roles-sidebar">
+        <div class="roles-header"><i class="fas fa-briefcase"></i> Roles</div>
+
+        <div class="role-tab active" onclick="switchRole(0)">
+          <div class="tab-icon"><img src="Infosys.webp" alt="Infosys"></div>
+          <div class="tab-meta">
+            <div class="role-title">AI Intern</div>
+            <div class="company-name">Infosys Springboard</div>
+            <div class="tab-date"><i class="far fa-calendar"></i> Nov 2025 – Feb 2026</div>
+            <div class="mini-tags">
+              <span class="mini-tag">Deep Learning</span>
+              <span class="mini-tag">CNN</span>
+              <span class="mini-tag">+2</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="role-tab" onclick="switchRole(1)">
+          <div class="tab-icon"><img src="edunet.webp" alt="Edunet"></div>
+          <div class="tab-meta">
+            <div class="role-title">Front End Dev</div>
+            <div class="company-name">Edunet Foundation</div>
+            <div class="tab-date"><i class="far fa-calendar"></i> Aug – Oct 2025</div>
+            <div class="mini-tags">
+              <span class="mini-tag">Flask</span>
+              <span class="mini-tag">HTML</span>
+              <span class="mini-tag">REST API</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="role-tab" onclick="switchRole(2)">
+          <div class="tab-icon"><img src="NIIT.webp" alt="NIIT"></div>
+          <div class="tab-meta">
+            <div class="role-title">Security Intern</div>
+            <div class="company-name">NIIT Foundation</div>
+            <div class="tab-date"><i class="far fa-calendar"></i> Aug – Sep 2025</div>
+            <div class="mini-tags">
+              <span class="mini-tag">Cybersec</span>
+              <span class="mini-tag">AI Defense</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- DETAIL PANELS -->
+      <div class="role-details">
+
+        <!-- Role 0: Infosys -->
+        <div class="role-panel active" id="role-0">
+          <div class="panel-logo-row">
+            <div class="panel-logo"><img src="Infosys.webp" alt="Infosys"></div>
+            <div class="panel-logo-text">
+              <div class="role-label">Artificial Intelligence Intern</div>
+              <div class="company-label">Infosys Springboard</div>
+            </div>
+          </div>
+
+          <h1 class="panel-title">Artificial Intelligence Intern</h1>
+          <div class="panel-company-row">
+            Infosys Springboard
+            <a href="https://infyspringboard.onwingspan.com/" target="_blank">
+              <i class="fas fa-arrow-up-right-from-square"></i> Visit website
+            </a>
+          </div>
+
+          <div class="meta-pills">
+            <span class="meta-pill date"><i class="far fa-calendar-alt"></i> Nov 2025 – Feb 2026</span>
+            <span class="meta-pill loc"><i class="fas fa-map-marker-alt"></i> Remote</span>
+          </div>
+
+          <p class="panel-desc">
+            Developing a production-grade <strong>Cat Emotion Recognition System</strong> using CNNs for facial analysis and LSTM models for audio classification. The work focuses on building robust multi-modal AI pipelines and deploying scalable inference endpoints.
+          </p>
+
+          <div class="panel-section-label">Skills &amp; Technologies</div>
+          <div class="skills-wrap">
+            <span class="skill-badge"><i class="fas fa-brain"></i> TensorFlow</span>
+            <span class="skill-badge"><i class="fas fa-project-diagram"></i> CNN / RNN</span>
+            <span class="skill-badge"><i class="fas fa-network-wired"></i> Deep Learning</span>
+            <span class="skill-badge"><i class="fas fa-server"></i> Flask</span>
+            <span class="skill-badge"><i class="fab fa-python"></i> Python</span>
+            <span class="skill-badge"><i class="fas fa-eye"></i> OpenCV</span>
+          </div>
+
+          <div class="panel-section-label">Key Contributions</div>
+          <div class="contrib-list">
+            <div class="contrib-item">
+              <i class="fas fa-check-circle ci-icon"></i>
+              <div>Built <strong>Cat Emotion Recognition System</strong> using MobileNetV2 (CNN) and LSTM networks, achieving high accuracy on multi-modal classification tasks.</div>
+            </div>
+            <div class="contrib-item">
+              <i class="fas fa-check-circle ci-icon"></i>
+              <div>Architected data pipelines to process <strong>MFCC audio features</strong> and image datasets efficiently for model training and validation.</div>
+            </div>
+            <div class="contrib-item">
+              <i class="fas fa-check-circle ci-icon"></i>
+              <div>Deployed a scalable <strong>Flask</strong> inference API serving model predictions in real-time to end-users.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Role 1: Edunet -->
+        <div class="role-panel" id="role-1">
+          <div class="panel-logo-row">
+            <div class="panel-logo"><img src="edunet.webp" alt="Edunet"></div>
+            <div class="panel-logo-text">
+              <div class="role-label">Front End Web Dev Intern</div>
+              <div class="company-label">Edunet Foundation</div>
+            </div>
+          </div>
+
+          <h1 class="panel-title">Front End Web Dev Intern</h1>
+          <div class="panel-company-row">
+            Edunet Foundation
+            <a href="https://edunetfoundation.org/" target="_blank" style="color:var(--green);">
+              <i class="fas fa-arrow-up-right-from-square"></i> Visit website
+            </a>
+          </div>
+
+          <div class="meta-pills">
+            <span class="meta-pill date"><i class="far fa-calendar-alt"></i> Aug – Oct 2025</span>
+            <span class="meta-pill loc"><i class="fas fa-map-marker-alt"></i> Remote</span>
+          </div>
+
+          <p class="panel-desc">
+            Developed and deployed a <strong>Smart Productivity Dashboard</strong> integrating task scheduling, data analytics, and real-time updates into a seamless web interface with Flask-backed REST APIs.
+          </p>
+
+          <div class="panel-section-label">Skills &amp; Technologies</div>
+          <div class="skills-wrap">
+            <span class="skill-badge"><i class="fab fa-html5"></i> HTML5</span>
+            <span class="skill-badge"><i class="fab fa-css3-alt"></i> CSS3</span>
+            <span class="skill-badge"><i class="fab fa-js"></i> JavaScript</span>
+            <span class="skill-badge"><i class="fas fa-server"></i> Flask</span>
+            <span class="skill-badge"><i class="fas fa-exchange-alt"></i> REST API</span>
+          </div>
+
+          <div class="panel-section-label">Key Contributions</div>
+          <div class="contrib-list">
+            <div class="contrib-item">
+              <i class="fas fa-check-circle ci-icon" style="color:var(--green);"></i>
+              <div>Built a <strong>Smart Productivity Dashboard</strong> with task scheduling and real-time progress analytics from scratch.</div>
+            </div>
+            <div class="contrib-item">
+              <i class="fas fa-check-circle ci-icon" style="color:var(--green);"></i>
+              <div>Implemented <strong>RESTful APIs</strong> using Flask enabling seamless data binding and live UI updates.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Role 2: NIIT -->
+        <div class="role-panel" id="role-2">
+          <div class="panel-logo-row">
+            <div class="panel-logo"><img src="NIIT.webp" alt="NIIT"></div>
+            <div class="panel-logo-text">
+              <div class="role-label">Cybersecurity with AI Intern</div>
+              <div class="company-label">NIIT Foundation</div>
+            </div>
+          </div>
+
+          <h1 class="panel-title">Cybersecurity with AI Intern</h1>
+          <div class="panel-company-row">
+            NIIT Foundation
+            <a href="https://niitfoundation.org/" target="_blank" style="color:#e11d48;">
+              <i class="fas fa-arrow-up-right-from-square"></i> Visit website
+            </a>
+          </div>
+
+          <div class="meta-pills">
+            <span class="meta-pill date"><i class="far fa-calendar-alt"></i> Aug – Sep 2025</span>
+            <span class="meta-pill loc"><i class="fas fa-map-marker-alt"></i> Remote</span>
+          </div>
+
+          <p class="panel-desc">
+            Explored the intersection of AI and cybersecurity — studying how ML models can detect network anomalies, defend against modern digital threats, and perform automated vulnerability analysis.
+          </p>
+
+          <div class="panel-section-label">Skills &amp; Technologies</div>
+          <div class="skills-wrap">
+            <span class="skill-badge"><i class="fas fa-shield-alt"></i> Cybersecurity</span>
+            <span class="skill-badge"><i class="fas fa-robot"></i> AI Defense</span>
+            <span class="skill-badge"><i class="fas fa-bug"></i> Threat Analysis</span>
+            <span class="skill-badge"><i class="fas fa-lock"></i> Network Security</span>
+          </div>
+
+          <div class="panel-section-label">Key Contributions</div>
+          <div class="contrib-list">
+            <div class="contrib-item">
+              <i class="fas fa-check-circle ci-icon" style="color:#e11d48;"></i>
+              <div>Implemented AI-driven <strong>threat detection methods</strong> to identify network traffic anomalies in test environments.</div>
+            </div>
+            <div class="contrib-item">
+              <i class="fas fa-check-circle ci-icon" style="color:#e11d48;"></i>
+              <div>Conducted <strong>vulnerability analysis</strong> on test systems to understand security gaps and evaluate AI-based defense strategies.</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="main-footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <span class="footer-logo">Harikarthik A.</span>
+        <p>AI Engineer · Chennai, India</p>
+      </div>
+      <ul class="footer-nav">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="experience.html">Experience</a></li>
+        <li><a href="achievements.html">Achievements</a></li>
+      </ul>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Harikarthik A. All rights reserved.</p>
+      <p>Designed with <i class="fas fa-heart" style="color:#ef4444;"></i></p>
+    </div>
+  </div>
+</footer>
+
+<script src="main.js"></script>
+<script>
+  const toggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('navLinks');
+  toggle?.addEventListener('click', () => navLinks.classList.toggle('open'));
+  document.addEventListener('click', e => { if (!e.target.closest('.navbar')) navLinks.classList.remove('open'); });
+</script>
+</body>
+</html>
