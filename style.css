@@ -1,7 +1,7 @@
 /* =========================================
    HARIKARTHIK A — PORTFOLIO (MAHADEVAN STYLE)
    ========================================= */
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Bebas+Neue&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Bebas+Neue&display=swap');
 
 /* ── TOKENS ── */
 :root {
@@ -23,7 +23,7 @@
   --shadow-lg:    0 25px 50px rgba(0,0,0,0.14);
   --radius:       20px;
   --ease:         cubic-bezier(0.4, 0, 0.2, 1);
-  --font-body:    'Space Grotesk', -apple-system, sans-serif;
+  --font-body:    'Plus Jakarta Sans', -apple-system, sans-serif;
   --font-display: 'Bebas Neue', 'Arial Black', sans-serif;
 }
 
@@ -505,7 +505,7 @@ img { max-width: 100%; display: block; }
   gap: 64px;
   width: max-content;
   padding: 10px 0;
-  animation: skillsScroll 20s linear infinite;
+  animation: skillsScroll 40s linear infinite;
 }
 .skills-scroll-track.paused { animation-play-state: paused; }
 @keyframes skillsScroll {
