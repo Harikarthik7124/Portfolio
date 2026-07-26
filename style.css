@@ -494,7 +494,7 @@ img { max-width: 100%; display: block; }
   gap: 64px;
   width: max-content;
   padding: 10px 0;
-  animation: skillsScroll 40s linear infinite;
+  animation: skillsScroll 20s linear infinite;
 }
 .skills-scroll-track.paused { animation-play-state: paused; }
 @keyframes skillsScroll {

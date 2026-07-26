@@ -1,333 +1,257 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Harikarthik A | Experience</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Bebas+Neue&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Bebas+Neue&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <style>
+    /* PAGE HERO */
+    .page-hero { padding:160px 0 60px; background:var(--cream); position:relative; overflow:hidden; }
+    .page-hero::before { content:'CAREER'; font-family:var(--font-display); font-size:clamp(6rem,18vw,16rem); color:rgba(0,0,0,0.03); position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); white-space:nowrap; pointer-events:none; }
+    .page-hero .container { position:relative; z-index:1; }
+    .page-hero-label { font-family:var(--font-display); font-size:clamp(3.5rem,10vw,7rem); color:var(--ink); line-height:1; }
+    .page-hero-sub { margin-top:16px; color:var(--muted); font-size:1.05rem; max-width:480px; line-height:1.7; }
 
-    /* ── PAGE HERO ── */
-    .page-hero {
-      padding: 160px 0 80px; background: var(--cream);
-      position: relative; overflow: hidden;
-    }
-    .page-hero::before {
-      content: 'CAREER'; font-family: var(--font-display);
-      font-size: clamp(6rem, 18vw, 16rem); color: rgba(0,0,0,0.03);
-      position: absolute; top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
-      white-space: nowrap; pointer-events: none; user-select: none;
-    }
-    .page-hero .container { position: relative; z-index: 1; }
-    .page-hero-label { font-family: var(--font-display); font-size: clamp(3.5rem, 10vw, 7rem); color: var(--ink); line-height: 1; }
-    .page-hero-sub { margin-top: 16px; color: var(--muted); font-size: 1.05rem; max-width: 480px; line-height: 1.7; }
-
-    /* ── MAIN LAYOUT ── */
-    .exp-section { background: #f8f9fc; padding: 80px 0 120px; }
+    /* EXP LAYOUT */
+    .exp-section { background:#f0f4ff; padding:60px 0 100px; }
 
     .exp-layout {
       display: grid;
-      grid-template-columns: 340px 1fr;
-      gap: 48px;
+      grid-template-columns: 320px 1fr;
+      gap: 32px;
       align-items: start;
     }
 
-    /* ══════════════════════════════
-       TIMELINE SIDEBAR — Mahadevan
-    ══════════════════════════════ */
-    .timeline-sidebar {
-      position: sticky; top: 100px;
-    }
+    /* ── TIMELINE SIDEBAR ── */
+    .timeline-sidebar { position: sticky; top: 90px; }
 
     .timeline-header {
-      display: flex; align-items: center; gap: 10px;
-      font-size: 0.72rem; font-weight: 800;
+      display: flex; align-items: center; gap: 8px;
+      font-size: 0.68rem; font-weight: 800;
       text-transform: uppercase; letter-spacing: 2.5px;
-      color: var(--muted); margin-bottom: 28px;
-      padding-bottom: 14px;
-      border-bottom: 1.5px solid var(--border);
+      color: var(--muted);
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 20px;
     }
-    .timeline-header i { font-size: 0.9rem; color: var(--blue); }
+    .timeline-header i { color: var(--blue); font-size: 0.85rem; }
 
-    /* The vertical dotted line + items */
-    .timeline-list {
-      position: relative;
-      padding-left: 24px;
-      display: flex; flex-direction: column; gap: 0;
-    }
+    .timeline-list { display: flex; flex-direction: column; gap: 12px; }
 
-    /* Vertical dotted line */
-    .timeline-list::before {
-      content: '';
-      position: absolute; left: 7px; top: 12px;
-      width: 2px;
-      bottom: 12px;
-      background: repeating-linear-gradient(
-        to bottom,
-        var(--border) 0px,
-        var(--border) 6px,
-        transparent 6px,
-        transparent 12px
-      );
-    }
-
-    .timeline-item {
-      position: relative;
-      padding: 0 0 16px 0;
-      cursor: pointer;
-    }
-
-    /* Dot on the line */
-    .timeline-item::before {
-      content: '';
-      position: absolute; left: -20px; top: 18px;
-      width: 12px; height: 12px;
-      border-radius: 50%;
-      background: var(--border);
-      border: 2px solid var(--white);
-      box-shadow: 0 0 0 2px var(--border);
-      transition: all .3s;
-    }
-    .timeline-item.active::before {
-      background: var(--blue);
-      box-shadow: 0 0 0 3px rgba(37,99,235,0.2);
-    }
-
-    /* Card */
-    .tl-card {
+    .tl-item {
       background: var(--white);
       border: 1.5px solid var(--border);
-      border-radius: 18px;
-      padding: 18px 20px;
-      transition: all .3s var(--ease);
+      border-radius: 16px;
+      padding: 16px 44px 16px 16px;
+      cursor: pointer;
       position: relative;
+      transition: all .3s;
     }
-    .tl-card:hover { border-color: rgba(37,99,235,0.3); transform: translateX(4px); }
-    .timeline-item.active .tl-card {
-      border: 2px solid var(--blue);
-      background: linear-gradient(135deg, #f0f7ff 0%, #ffffff 100%);
-      box-shadow: 0 8px 24px rgba(37,99,235,0.1);
+    .tl-item:hover { border-color: rgba(37,99,235,0.3); transform: translateX(4px); }
+    .tl-item.active {
+      border: 2px solid #6366f1;
+      background: linear-gradient(135deg,#eef2ff,#f5f3ff);
+      box-shadow: 0 4px 20px rgba(99,102,241,0.15);
     }
 
-    /* Arrow on active card */
+    /* Arrow button */
     .tl-arrow {
-      position: absolute; right: 16px; top: 50%;
-      transform: translateY(-50%);
+      position: absolute; right: 12px; top: 50%; transform: translateY(-50%);
       width: 28px; height: 28px; border-radius: 50%;
-      background: var(--border); color: var(--muted);
+      background: #e2e8f0; color: #64748b;
       display: flex; align-items: center; justify-content: center;
-      font-size: 0.75rem; transition: all .3s;
+      font-size: 0.7rem; transition: all .3s;
     }
-    .timeline-item.active .tl-arrow {
-      background: var(--blue); color: white;
-    }
+    .tl-item.active .tl-arrow { background: #6366f1; color: white; }
 
-    .tl-top { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; padding-right: 36px; }
+    .tl-top { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
     .tl-logo {
-      width: 42px; height: 42px; border-radius: 10px;
-      background: var(--white); box-shadow: var(--shadow-sm);
-      padding: 4px; display: flex; align-items: center; justify-content: center;
-      overflow: hidden; flex-shrink: 0;
+      width: 40px; height: 40px; border-radius: 10px;
+      background: var(--white); border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden; padding: 3px; flex-shrink: 0;
     }
-    .tl-logo img { width: 100%; height: 100%; object-fit: contain; }
-    .tl-logo-text { font-size: 0.9rem; font-weight: 800; color: var(--ink); }
-    .tl-company { font-size: 0.78rem; color: var(--muted); font-weight: 600; margin-top: 1px; }
+    .tl-logo img { width: 100%; object-fit: contain; }
+    .tl-role { font-size: 0.92rem; font-weight: 700; color: var(--ink); }
+    .tl-company { font-size: 0.75rem; color: var(--muted); margin-top: 1px; }
 
     .tl-date {
       display: inline-flex; align-items: center; gap: 5px;
-      font-size: 0.7rem; font-weight: 700;
-      background: #f3e8ff; color: #7c3aed;
-      padding: 3px 10px; border-radius: 6px;
-      margin-bottom: 10px;
+      font-size: 0.68rem; font-weight: 700;
+      background: #ede9fe; color: #7c3aed;
+      padding: 3px 10px; border-radius: 6px; margin-bottom: 8px;
     }
-
-    .tl-tags { display: flex; gap: 5px; flex-wrap: wrap; }
+    .tl-tags { display: flex; flex-wrap: wrap; gap: 5px; }
     .tl-tag {
       font-size: 0.65rem; font-weight: 600;
-      background: var(--cream); color: var(--muted);
-      border: 1px solid var(--border);
-      padding: 2px 8px; border-radius: 4px;
+      background: #f1f5f9; color: #64748b;
+      border: 1px solid #e2e8f0; padding: 2px 8px; border-radius: 4px;
     }
 
-    /* ══════════════════════════════
-       DETAIL PANEL — Mahadevan
-    ══════════════════════════════ */
+    /* ── DETAIL PANEL ── */
     .role-details { min-width: 0; }
 
     .role-panel {
       display: none;
       background: var(--white);
       border: 1px solid var(--border);
-      border-radius: 24px;
+      border-radius: 20px;
       overflow: hidden;
-      box-shadow: 0 4px 24px rgba(0,0,0,0.05);
-      animation: panelSlide .4s var(--ease) forwards;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+      animation: panelIn .35s ease forwards;
     }
     .role-panel.active { display: block; }
-
-    @keyframes panelSlide {
-      from { opacity:0; transform: translateY(16px); filter: blur(4px); }
-      to   { opacity:1; transform: translateY(0);    filter: blur(0); }
+    @keyframes panelIn {
+      from { opacity:0; transform:translateY(12px); }
+      to   { opacity:1; transform:translateY(0); }
     }
 
-    /* Panel top header row */
-    .panel-header {
+    /* Panel header */
+    .panel-hdr {
       display: flex; align-items: center; justify-content: space-between;
-      padding: 24px 32px;
+      padding: 18px 24px;
       border-bottom: 1px solid var(--border);
-      background: var(--white);
     }
-    .panel-header-left { display: flex; align-items: center; gap: 14px; }
-    .panel-hlogo {
-      width: 48px; height: 48px; border-radius: 12px;
-      background: var(--white); box-shadow: var(--shadow-sm);
-      padding: 5px; display: flex; align-items: center; justify-content: center;
-      overflow: hidden;
+    .panel-hdr-left { display: flex; align-items: center; gap: 12px; }
+    .panel-hdr-logo {
+      width: 44px; height: 44px; border-radius: 10px;
+      border: 1px solid var(--border); padding: 4px;
+      display: flex; align-items: center; justify-content: center; overflow: hidden;
     }
-    .panel-hlogo img { width: 100%; object-fit: contain; }
-    .panel-hrole { font-size: 0.85rem; font-weight: 600; color: var(--muted); }
-    .panel-hcompany { font-size: 1rem; font-weight: 800; color: var(--ink); }
-    .panel-close {
+    .panel-hdr-logo img { width: 100%; object-fit: contain; }
+    .panel-hdr-role { font-size: 0.8rem; color: var(--muted); font-weight: 600; }
+    .panel-hdr-company { font-size: 0.95rem; font-weight: 800; color: var(--ink); }
+    .panel-close-btn {
       width: 32px; height: 32px; border-radius: 50%;
-      border: 1.5px solid var(--border);
-      background: var(--white); color: var(--muted);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 0.9rem; cursor: pointer; transition: all .2s;
+      border: 1.5px solid var(--border); background: var(--white);
+      color: var(--muted); display: flex; align-items: center; justify-content: center;
+      font-size: 0.85rem; cursor: pointer; transition: all .2s;
     }
-    .panel-close:hover { background: #fee2e2; color: #e11d48; border-color: #fecaca; }
+    .panel-close-btn:hover { background: #fee2e2; color: #e11d48; border-color: #fecaca; }
 
     /* Panel body */
-    .panel-body { padding: 32px; }
+    .panel-body { padding: 28px 28px 32px; }
 
-    .panel-title {
-      font-size: clamp(1.6rem, 4vw, 2rem);
-      font-weight: 800; color: var(--ink);
-      line-height: 1.15; margin-bottom: 6px;
-    }
-    .panel-company-link {
+    .panel-title { font-size: clamp(1.5rem,3.5vw,2rem); font-weight: 800; color: var(--ink); margin-bottom: 6px; }
+    .panel-company-row {
       display: flex; align-items: center; gap: 10px;
-      font-size: 0.95rem; color: var(--muted);
-      font-weight: 600; margin-bottom: 20px;
+      font-size: 0.95rem; color: var(--muted); font-weight: 600;
+      margin-bottom: 18px;
     }
-    .panel-company-link a {
-      display: inline-flex; align-items: center; gap: 5px;
-      font-size: 0.82rem; color: var(--blue); font-weight: 700;
+    .panel-company-row a {
+      font-size: 0.82rem; color: #6366f1; font-weight: 700;
+      display: inline-flex; align-items: center; gap: 4px;
     }
+    .panel-company-row a:hover { text-decoration: underline; }
 
-    .meta-pills { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 32px; }
-    .meta-pill {
-      display: inline-flex; align-items: center; gap: 7px;
-      padding: 7px 16px; border-radius: 10px;
-      font-size: 0.82rem; font-weight: 700;
+    .panel-pills { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px; }
+    .ppill {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 7px 14px; border-radius: 10px;
+      font-size: 0.8rem; font-weight: 700;
     }
-    .meta-pill.date { background: #fdf4ff; color: #a21caf; border: 1px solid #f0abfc; }
-    .meta-pill.loc  { background: var(--blue-light); color: var(--blue); border: 1px solid #bfdbfe; }
+    .ppill.date { background: #fdf4ff; color: #a21caf; border: 1px solid #f0abfc; }
+    .ppill.loc  { background: #eff6ff; color: #2563eb; border: 1px solid #bfdbfe; }
 
-    /* KEY IMPACT METRICS — Mahadevan style */
-    .impact-label {
-      display: flex; align-items: center; gap: 8px;
-      font-size: 0.72rem; font-weight: 800;
-      text-transform: uppercase; letter-spacing: 2px;
-      color: var(--muted); margin-bottom: 16px;
-    }
-    .impact-label i { color: var(--blue); }
-
-    .metrics-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-      gap: 12px;
-      margin-bottom: 32px;
-    }
-    .metric-card {
-      background: #f8f9fc;
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 20px 16px;
-      text-align: center;
-    }
-    .metric-number {
-      font-size: 1.8rem; font-weight: 900;
-      color: #d946ef; /* Mahadevan pink */
-      line-height: 1; margin-bottom: 6px;
-      display: block;
-    }
-    .metric-number.purple { color: #7c3aed; }
-    .metric-number.blue   { color: #2563eb; }
-    .metric-label {
-      font-size: 0.75rem; font-weight: 600;
-      color: var(--muted); line-height: 1.3;
-    }
-
-    /* KEY CONTRIBUTIONS */
-    .contrib-label {
-      display: flex; align-items: center; gap: 8px;
-      font-size: 0.72rem; font-weight: 800;
-      text-transform: uppercase; letter-spacing: 2px;
-      color: var(--muted); margin: 28px 0 14px;
-    }
-    .contrib-label i { color: #d946ef; }
-
-    .contrib-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; }
-    .contrib-item {
-      display: flex; gap: 12px; align-items: flex-start;
-      background: var(--cream); border: 1px solid var(--border);
-      border-radius: 12px; padding: 14px 16px;
-      font-size: 0.88rem; color: var(--text); line-height: 1.65;
-    }
-    .contrib-item .ci-icon { flex-shrink: 0; margin-top: 2px; font-size: 0.82rem; }
-    .contrib-item strong { color: var(--ink); }
-
-    /* Skills section */
-    .skills-label {
-      display: flex; align-items: center; gap: 8px;
-      font-size: 0.72rem; font-weight: 800;
+    /* KEY IMPACT METRICS */
+    .section-label {
+      display: flex; align-items: center; gap: 7px;
+      font-size: 0.68rem; font-weight: 800;
       text-transform: uppercase; letter-spacing: 2px;
       color: var(--muted); margin-bottom: 14px;
     }
-    .skills-label i { color: var(--blue); }
+    .section-label i { color: #6366f1; font-size: 0.8rem; }
 
-    .skills-wrap {
-      display: flex; flex-wrap: wrap; gap: 8px;
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 10px;
+      margin-bottom: 28px;
     }
-    .skill-badge {
-      display: inline-flex; align-items: center; gap: 6px;
+    .metric-card {
+      background: #f8fafc; border: 1px solid #e2e8f0;
+      border-radius: 12px; padding: 18px 14px; text-align: center;
+    }
+    .metric-num {
+      font-size: 1.8rem; font-weight: 900;
+      color: #d946ef; line-height: 1; display: block; margin-bottom: 5px;
+    }
+    .metric-num.purple { color: #7c3aed; }
+    .metric-num.blue   { color: #2563eb; }
+    .metric-lbl { font-size: 0.72rem; font-weight: 600; color: #64748b; line-height: 1.3; }
+
+    /* CONTRIBUTIONS */
+    .contrib-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 24px; }
+    .contrib-item {
+      display: flex; gap: 10px; align-items: flex-start;
+      background: #f8fafc; border: 1px solid #e2e8f0;
+      border-radius: 10px; padding: 12px 14px;
+      font-size: 0.86rem; color: var(--text); line-height: 1.6;
+    }
+    .contrib-item i { flex-shrink: 0; margin-top: 2px; font-size: 0.8rem; }
+    .contrib-item strong { color: var(--ink); }
+
+    /* SKILLS */
+    .skills-wrap { display: flex; flex-wrap: wrap; gap: 8px; }
+    .skill-bdg {
+      display: inline-flex; align-items: center; gap: 5px;
       background: var(--white); border: 1.5px solid var(--border);
-      border-radius: 100px; padding: 6px 14px;
-      font-size: 0.8rem; font-weight: 700; color: var(--ink);
+      border-radius: 100px; padding: 5px 12px;
+      font-size: 0.78rem; font-weight: 700; color: var(--ink);
       transition: all .2s;
     }
-    .skill-badge:hover { border-color: var(--blue); color: var(--blue); }
+    .skill-bdg:hover { border-color: #6366f1; color: #6366f1; }
 
     /* ── DARK MODE ── */
-    [data-theme="dark"] .exp-section { background: #0a0a0a; }
-    [data-theme="dark"] .tl-card { background: #1a1a1a; border-color: rgba(255,255,255,0.08); }
-    [data-theme="dark"] .timeline-item.active .tl-card { background: rgba(37,99,235,0.1); }
+    [data-theme="dark"] .exp-section { background: #080c1a; }
+    [data-theme="dark"] .tl-item { background: #1a1a1a; border-color: rgba(255,255,255,0.08); }
+    [data-theme="dark"] .tl-item.active { background: rgba(99,102,241,0.1); border-color: #6366f1; }
+    [data-theme="dark"] .tl-arrow { background: #2a2a2a; color: #aaa; }
+    [data-theme="dark"] .tl-tag { background: #222; border-color: rgba(255,255,255,0.07); color: #888; }
+    [data-theme="dark"] .tl-date { background: #2d1b4e; color: #c084fc; }
     [data-theme="dark"] .role-panel { background: #1a1a1a; border-color: rgba(255,255,255,0.08); }
-    [data-theme="dark"] .panel-header { background: #1a1a1a; border-color: rgba(255,255,255,0.07); }
-    [data-theme="dark"] .panel-close { background: #222; border-color: rgba(255,255,255,0.1); color: #aaa; }
+    [data-theme="dark"] .panel-hdr { border-color: rgba(255,255,255,0.07); }
+    [data-theme="dark"] .panel-close-btn { background: #222; border-color: rgba(255,255,255,0.1); color: #aaa; }
     [data-theme="dark"] .metric-card { background: #222; border-color: rgba(255,255,255,0.07); }
     [data-theme="dark"] .contrib-item { background: #222; border-color: rgba(255,255,255,0.06); }
-    [data-theme="dark"] .skill-badge { background: #2a2a2a; border-color: rgba(255,255,255,0.1); color: #f0ece4; }
-    [data-theme="dark"] .tl-date { background: #2d1b4e; color: #c084fc; }
-    [data-theme="dark"] .tl-tag { background: #222; border-color: rgba(255,255,255,0.07); color: #888; }
-    [data-theme="dark"] .timeline-list::before { background: repeating-linear-gradient(to bottom, rgba(255,255,255,0.1) 0px, rgba(255,255,255,0.1) 6px, transparent 6px, transparent 12px); }
+    [data-theme="dark"] .skill-bdg { background: #2a2a2a; border-color: rgba(255,255,255,0.1); color: #f0ece4; }
+    [data-theme="dark"] .ppill.date { background: #2d1b4e; color: #e879f9; border-color: #7e22ce; }
+    [data-theme="dark"] .ppill.loc { background: rgba(37,99,235,0.12); color: #60a5fa; border-color: rgba(37,99,235,0.3); }
 
-    /* ── RESPONSIVE ── */
-    @media (max-width: 960px) {
-      .exp-layout { grid-template-columns: 1fr; }
+    /* ── MOBILE ── */
+    @media (max-width: 768px) {
+      .page-hero { padding: 110px 0 40px; }
+      .exp-section { padding: 40px 0 60px; }
+      .exp-layout { grid-template-columns: 1fr; gap: 20px; }
       .timeline-sidebar { position: static; }
-      .timeline-list { flex-direction: row; overflow-x: auto; padding: 0 0 12px 0; gap: 12px; display: flex; }
-      .timeline-list::before { display: none; }
-      .timeline-item { padding: 0; flex-shrink: 0; min-width: 260px; }
-      .timeline-item::before { display: none; }
-    }
-    @media (max-width: 600px) {
-      .panel-body { padding: 20px; }
-      .panel-title { font-size: 1.4rem; }
-      .metrics-grid { grid-template-columns: repeat(2, 1fr); }
+
+      /* Horizontal scroll on mobile */
+      .timeline-list {
+        flex-direction: row;
+        overflow-x: auto;
+        padding-bottom: 8px;
+        gap: 10px;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+      }
+      .timeline-list::-webkit-scrollbar { display: none; }
+      .tl-item {
+        min-width: 220px; flex-shrink: 0;
+        scroll-snap-align: start;
+        padding: 12px 38px 12px 12px;
+      }
+      .tl-item:hover { transform: none; }
+      .tl-role { font-size: 0.82rem; }
+      .panel-body { padding: 18px; }
+      .panel-title { font-size: 1.3rem; }
+      .metrics-grid { grid-template-columns: 1fr 1fr; }
+      .metric-num { font-size: 1.5rem; }
+      .panel-pills { gap: 6px; }
+      .ppill { padding: 5px 10px; font-size: 0.72rem; }
     }
   </style>
 </head>
@@ -360,7 +284,7 @@
   <div class="container fade-in-up">
     <span class="eyebrow">Career</span>
     <h1 class="page-hero-label">Experience</h1>
-    <p class="page-hero-sub">Internships where I shipped real AI products, built full-stack systems, and worked across security and front-end domains.</p>
+    <p class="page-hero-sub">Internships where I shipped real AI products and built full-stack systems.</p>
   </div>
 </div>
 
@@ -369,307 +293,181 @@
   <div class="container">
     <div class="exp-layout fade-in-up">
 
-      <!-- ═══ TIMELINE SIDEBAR ═══ -->
+      <!-- TIMELINE -->
       <div class="timeline-sidebar">
-        <div class="timeline-header">
-          <i class="fas fa-th-large"></i> Timeline
-        </div>
-
+        <div class="timeline-header"><i class="fas fa-th-large"></i> Timeline</div>
         <div class="timeline-list">
 
-          <!-- Infosys -->
-          <div class="timeline-item active" onclick="switchRole(0)">
-            <div class="tl-card">
-              <div class="tl-top">
-                <div class="tl-logo"><img src="Infosys.webp" alt="Infosys"></div>
-                <div>
-                  <div class="tl-logo-text">AI Intern</div>
-                  <div class="tl-company">Infosys Springboard</div>
-                </div>
-              </div>
-              <div class="tl-date"><i class="far fa-calendar"></i> Nov 2025 – Feb 2026</div>
-              <div class="tl-tags">
-                <span class="tl-tag">Deep Learning</span>
-                <span class="tl-tag">CNN</span>
-                <span class="tl-tag">LSTM</span>
-                <span class="tl-tag">+1</span>
-              </div>
-              <div class="tl-arrow"><i class="fas fa-chevron-right"></i></div>
+          <div class="tl-item active" onclick="switchExp(0)">
+            <div class="tl-top">
+              <div class="tl-logo"><img src="Infosys.webp" alt="Infosys"></div>
+              <div><div class="tl-role">AI Intern</div><div class="tl-company">Infosys Springboard</div></div>
             </div>
+            <div class="tl-date"><i class="far fa-calendar"></i> Nov 2025 – Feb 2026</div>
+            <div class="tl-tags"><span class="tl-tag">Deep Learning</span><span class="tl-tag">CNN</span><span class="tl-tag">LSTM</span></div>
+            <div class="tl-arrow"><i class="fas fa-chevron-right"></i></div>
           </div>
 
-          <!-- Edunet -->
-          <div class="timeline-item" onclick="switchRole(1)">
-            <div class="tl-card">
-              <div class="tl-top">
-                <div class="tl-logo"><img src="edunet.webp" alt="Edunet"></div>
-                <div>
-                  <div class="tl-logo-text">Front End Dev</div>
-                  <div class="tl-company">Edunet Foundation</div>
-                </div>
-              </div>
-              <div class="tl-date"><i class="far fa-calendar"></i> Aug – Oct 2025</div>
-              <div class="tl-tags">
-                <span class="tl-tag">Flask</span>
-                <span class="tl-tag">HTML</span>
-                <span class="tl-tag">REST API</span>
-              </div>
-              <div class="tl-arrow"><i class="fas fa-chevron-right"></i></div>
+          <div class="tl-item" onclick="switchExp(1)">
+            <div class="tl-top">
+              <div class="tl-logo"><img src="edunet.webp" alt="Edunet"></div>
+              <div><div class="tl-role">Front End Dev</div><div class="tl-company">Edunet Foundation</div></div>
             </div>
+            <div class="tl-date"><i class="far fa-calendar"></i> Aug – Oct 2025</div>
+            <div class="tl-tags"><span class="tl-tag">Flask</span><span class="tl-tag">HTML</span><span class="tl-tag">REST API</span></div>
+            <div class="tl-arrow"><i class="fas fa-chevron-right"></i></div>
           </div>
 
-          <!-- NIIT -->
-          <div class="timeline-item" onclick="switchRole(2)">
-            <div class="tl-card">
-              <div class="tl-top">
-                <div class="tl-logo"><img src="NIIT.webp" alt="NIIT"></div>
-                <div>
-                  <div class="tl-logo-text">Security Intern</div>
-                  <div class="tl-company">NIIT Foundation</div>
-                </div>
-              </div>
-              <div class="tl-date"><i class="far fa-calendar"></i> Aug – Sep 2025</div>
-              <div class="tl-tags">
-                <span class="tl-tag">Cybersec</span>
-                <span class="tl-tag">AI Defense</span>
-              </div>
-              <div class="tl-arrow"><i class="fas fa-chevron-right"></i></div>
+          <div class="tl-item" onclick="switchExp(2)">
+            <div class="tl-top">
+              <div class="tl-logo"><img src="NIIT.webp" alt="NIIT"></div>
+              <div><div class="tl-role">Security Intern</div><div class="tl-company">NIIT Foundation</div></div>
             </div>
+            <div class="tl-date"><i class="far fa-calendar"></i> Aug – Sep 2025</div>
+            <div class="tl-tags"><span class="tl-tag">Cybersec</span><span class="tl-tag">AI Defense</span></div>
+            <div class="tl-arrow"><i class="fas fa-chevron-right"></i></div>
           </div>
 
         </div>
       </div>
 
-      <!-- ═══ DETAIL PANELS ═══ -->
+      <!-- DETAIL PANELS -->
       <div class="role-details">
 
-        <!-- ── Role 0: Infosys ── -->
-        <div class="role-panel active" id="role-0">
-          <div class="panel-header">
-            <div class="panel-header-left">
-              <div class="panel-hlogo"><img src="Infosys.webp" alt="Infosys"></div>
-              <div>
-                <div class="panel-hrole">Artificial Intelligence Intern</div>
-                <div class="panel-hcompany">Infosys Springboard</div>
-              </div>
+        <!-- Infosys -->
+        <div class="role-panel active" id="exp-0">
+          <div class="panel-hdr">
+            <div class="panel-hdr-left">
+              <div class="panel-hdr-logo"><img src="Infosys.webp" alt="Infosys"></div>
+              <div><div class="panel-hdr-role">Artificial Intelligence Intern</div><div class="panel-hdr-company">Infosys Springboard</div></div>
             </div>
+            <button class="panel-close-btn" onclick="closePanel()"><i class="fas fa-times"></i></button>
           </div>
-
           <div class="panel-body">
             <h1 class="panel-title">Artificial Intelligence Intern</h1>
-            <div class="panel-company-link">
+            <div class="panel-company-row">
               Infosys Springboard
-              <a href="https://infyspringboard.onwingspan.com/" target="_blank">
-                <i class="fas fa-arrow-up-right-from-square"></i> Visit website
-              </a>
+              <a href="https://infyspringboard.onwingspan.com/" target="_blank"><i class="fas fa-arrow-up-right-from-square"></i> Visit website</a>
+            </div>
+            <div class="panel-pills">
+              <span class="ppill date"><i class="far fa-calendar-alt"></i> Nov 2025 – Feb 2026</span>
+              <span class="ppill loc"><i class="fas fa-map-marker-alt"></i> Remote</span>
             </div>
 
-            <div class="meta-pills">
-              <span class="meta-pill date"><i class="far fa-calendar-alt"></i> Nov 2025 – Feb 2026</span>
-              <span class="meta-pill loc"><i class="fas fa-map-marker-alt"></i> Remote</span>
-            </div>
-
-            <!-- KEY IMPACT METRICS -->
-            <div class="impact-label">
-              <i class="fas fa-chart-line"></i> Key Impact Metrics
-            </div>
+            <div class="section-label"><i class="fas fa-chart-line"></i> Key Impact Metrics</div>
             <div class="metrics-grid">
-              <div class="metric-card">
-                <span class="metric-number">2</span>
-                <span class="metric-label">AI Models Built (CNN + LSTM)</span>
-              </div>
-              <div class="metric-card">
-                <span class="metric-number purple">95%+</span>
-                <span class="metric-label">Classification Accuracy</span>
-              </div>
-              <div class="metric-card">
-                <span class="metric-number blue">3</span>
-                <span class="metric-label">Emotion Classes Detected</span>
-              </div>
+              <div class="metric-card"><span class="metric-num">2</span><span class="metric-lbl">AI Models Built (CNN + LSTM)</span></div>
+              <div class="metric-card"><span class="metric-num purple">95%+</span><span class="metric-lbl">Classification Accuracy</span></div>
+              <div class="metric-card"><span class="metric-num blue">3</span><span class="metric-lbl">Emotion Classes Detected</span></div>
             </div>
 
-            <!-- KEY CONTRIBUTIONS -->
-            <div class="contrib-label">
-              <i class="fas fa-star"></i> Key Contributions &amp; Achievements
-            </div>
+            <div class="section-label"><i class="fas fa-star"></i> Key Contributions</div>
             <div class="contrib-list">
-              <div class="contrib-item">
-                <i class="fas fa-check-circle ci-icon" style="color:#2563eb;"></i>
-                <div>Built <strong>Cat Emotion Recognition System</strong> using MobileNetV2 (CNN) for facial analysis and LSTM networks for MFCC-based audio classification.</div>
-              </div>
-              <div class="contrib-item">
-                <i class="fas fa-check-circle ci-icon" style="color:#2563eb;"></i>
-                <div>Architected multi-modal data pipelines processing <strong>MFCC audio features</strong> and image datasets simultaneously for joint model training.</div>
-              </div>
-              <div class="contrib-item">
-                <i class="fas fa-check-circle ci-icon" style="color:#2563eb;"></i>
-                <div>Deployed a scalable <strong>Flask inference API</strong> serving real-time emotion predictions to end-users via Streamlit frontend.</div>
-              </div>
+              <div class="contrib-item"><i class="fas fa-check-circle" style="color:#2563eb;"></i><div>Built <strong>Cat Emotion Recognition System</strong> using MobileNetV2 (CNN) and LSTM networks for MFCC-based audio classification.</div></div>
+              <div class="contrib-item"><i class="fas fa-check-circle" style="color:#2563eb;"></i><div>Architected multi-modal data pipelines processing <strong>MFCC audio features</strong> and image datasets for joint model training.</div></div>
+              <div class="contrib-item"><i class="fas fa-check-circle" style="color:#2563eb;"></i><div>Deployed a scalable <strong>Flask inference API</strong> serving real-time emotion predictions via Streamlit frontend.</div></div>
             </div>
 
-            <!-- SKILLS -->
-            <div class="skills-label">
-              <i class="fas fa-code"></i> Skills &amp; Technologies
-            </div>
+            <div class="section-label"><i class="fas fa-code"></i> Skills &amp; Technologies</div>
             <div class="skills-wrap">
-              <span class="skill-badge"><i class="fas fa-brain"></i> TensorFlow</span>
-              <span class="skill-badge"><i class="fas fa-project-diagram"></i> CNN / LSTM</span>
-              <span class="skill-badge"><i class="fas fa-eye"></i> OpenCV</span>
-              <span class="skill-badge"><i class="fas fa-server"></i> Flask</span>
-              <span class="skill-badge"><i class="fab fa-python"></i> Python</span>
-              <span class="skill-badge"><i class="fas fa-music"></i> MFCC</span>
+              <span class="skill-bdg"><i class="fas fa-brain"></i> TensorFlow</span>
+              <span class="skill-bdg"><i class="fas fa-project-diagram"></i> CNN / LSTM</span>
+              <span class="skill-bdg"><i class="fas fa-eye"></i> OpenCV</span>
+              <span class="skill-bdg"><i class="fas fa-server"></i> Flask</span>
+              <span class="skill-bdg"><i class="fab fa-python"></i> Python</span>
+              <span class="skill-bdg"><i class="fas fa-music"></i> MFCC / Librosa</span>
             </div>
           </div>
         </div>
 
-        <!-- ── Role 1: Edunet ── -->
-        <div class="role-panel" id="role-1">
-          <div class="panel-header">
-            <div class="panel-header-left">
-              <div class="panel-hlogo"><img src="edunet.webp" alt="Edunet"></div>
-              <div>
-                <div class="panel-hrole">Front End Web Dev Intern</div>
-                <div class="panel-hcompany">Edunet Foundation</div>
-              </div>
+        <!-- Edunet -->
+        <div class="role-panel" id="exp-1">
+          <div class="panel-hdr">
+            <div class="panel-hdr-left">
+              <div class="panel-hdr-logo"><img src="edunet.webp" alt="Edunet"></div>
+              <div><div class="panel-hdr-role">Front End Web Dev Intern</div><div class="panel-hdr-company">Edunet Foundation</div></div>
             </div>
+            <button class="panel-close-btn" onclick="closePanel()"><i class="fas fa-times"></i></button>
           </div>
-
           <div class="panel-body">
             <h1 class="panel-title">Front End Web Dev Intern</h1>
-            <div class="panel-company-link">
+            <div class="panel-company-row">
               Edunet Foundation
-              <a href="https://edunetfoundation.org/" target="_blank" style="color:#16a34a;">
-                <i class="fas fa-arrow-up-right-from-square"></i> Visit website
-              </a>
+              <a href="https://edunetfoundation.org/" target="_blank" style="color:#16a34a;"><i class="fas fa-arrow-up-right-from-square"></i> Visit website</a>
+            </div>
+            <div class="panel-pills">
+              <span class="ppill date"><i class="far fa-calendar-alt"></i> Aug – Oct 2025</span>
+              <span class="ppill loc"><i class="fas fa-map-marker-alt"></i> Remote</span>
             </div>
 
-            <div class="meta-pills">
-              <span class="meta-pill date"><i class="far fa-calendar-alt"></i> Aug – Oct 2025</span>
-              <span class="meta-pill loc"><i class="fas fa-map-marker-alt"></i> Remote</span>
-            </div>
-
-            <!-- KEY IMPACT METRICS -->
-            <div class="impact-label">
-              <i class="fas fa-chart-line"></i> Key Impact Metrics
-            </div>
+            <div class="section-label"><i class="fas fa-chart-line"></i> Key Impact Metrics</div>
             <div class="metrics-grid">
-              <div class="metric-card">
-                <span class="metric-number">5+</span>
-                <span class="metric-label">REST API Endpoints Built</span>
-              </div>
-              <div class="metric-card">
-                <span class="metric-number purple">1</span>
-                <span class="metric-label">Full Dashboard Shipped</span>
-              </div>
-              <div class="metric-card">
-                <span class="metric-number blue">Real-time</span>
-                <span class="metric-label">Live Data Updates</span>
-              </div>
+              <div class="metric-card"><span class="metric-num">5+</span><span class="metric-lbl">REST API Endpoints Built</span></div>
+              <div class="metric-card"><span class="metric-num purple">1</span><span class="metric-lbl">Full Dashboard Shipped</span></div>
+              <div class="metric-card"><span class="metric-num blue">Real‑time</span><span class="metric-lbl">Live Data Updates</span></div>
             </div>
 
-            <!-- KEY CONTRIBUTIONS -->
-            <div class="contrib-label">
-              <i class="fas fa-star"></i> Key Contributions &amp; Achievements
-            </div>
+            <div class="section-label"><i class="fas fa-star"></i> Key Contributions</div>
             <div class="contrib-list">
-              <div class="contrib-item">
-                <i class="fas fa-check-circle ci-icon" style="color:#16a34a;"></i>
-                <div>Built a <strong>Smart Productivity Dashboard</strong> with task scheduling, Pomodoro timer, and real-time progress analytics from scratch.</div>
-              </div>
-              <div class="contrib-item">
-                <i class="fas fa-check-circle ci-icon" style="color:#16a34a;"></i>
-                <div>Implemented <strong>RESTful APIs</strong> using Flask enabling seamless data binding, live UI updates, and category-based task management.</div>
-              </div>
+              <div class="contrib-item"><i class="fas fa-check-circle" style="color:#16a34a;"></i><div>Built a <strong>Smart Productivity Dashboard</strong> with task scheduling, Pomodoro timer, and real-time progress analytics.</div></div>
+              <div class="contrib-item"><i class="fas fa-check-circle" style="color:#16a34a;"></i><div>Implemented <strong>RESTful APIs</strong> using Flask enabling seamless live UI updates and category-based task management.</div></div>
             </div>
 
-            <!-- SKILLS -->
-            <div class="skills-label">
-              <i class="fas fa-code"></i> Skills &amp; Technologies
-            </div>
+            <div class="section-label"><i class="fas fa-code"></i> Skills &amp; Technologies</div>
             <div class="skills-wrap">
-              <span class="skill-badge"><i class="fab fa-html5"></i> HTML5</span>
-              <span class="skill-badge"><i class="fab fa-css3-alt"></i> CSS3</span>
-              <span class="skill-badge"><i class="fab fa-js"></i> JavaScript</span>
-              <span class="skill-badge"><i class="fas fa-server"></i> Flask</span>
-              <span class="skill-badge"><i class="fas fa-exchange-alt"></i> REST API</span>
+              <span class="skill-bdg"><i class="fab fa-html5"></i> HTML5</span>
+              <span class="skill-bdg"><i class="fab fa-css3-alt"></i> CSS3</span>
+              <span class="skill-bdg"><i class="fab fa-js"></i> JavaScript</span>
+              <span class="skill-bdg"><i class="fas fa-server"></i> Flask</span>
+              <span class="skill-bdg"><i class="fas fa-exchange-alt"></i> REST API</span>
             </div>
           </div>
         </div>
 
-        <!-- ── Role 2: NIIT ── -->
-        <div class="role-panel" id="role-2">
-          <div class="panel-header">
-            <div class="panel-header-left">
-              <div class="panel-hlogo"><img src="NIIT.webp" alt="NIIT"></div>
-              <div>
-                <div class="panel-hrole">Cybersecurity with AI Intern</div>
-                <div class="panel-hcompany">NIIT Foundation</div>
-              </div>
+        <!-- NIIT -->
+        <div class="role-panel" id="exp-2">
+          <div class="panel-hdr">
+            <div class="panel-hdr-left">
+              <div class="panel-hdr-logo"><img src="NIIT.webp" alt="NIIT"></div>
+              <div><div class="panel-hdr-role">Cybersecurity with AI Intern</div><div class="panel-hdr-company">NIIT Foundation</div></div>
             </div>
+            <button class="panel-close-btn" onclick="closePanel()"><i class="fas fa-times"></i></button>
           </div>
-
           <div class="panel-body">
             <h1 class="panel-title">Cybersecurity with AI Intern</h1>
-            <div class="panel-company-link">
+            <div class="panel-company-row">
               NIIT Foundation
-              <a href="https://niitfoundation.org/" target="_blank" style="color:#e11d48;">
-                <i class="fas fa-arrow-up-right-from-square"></i> Visit website
-              </a>
+              <a href="https://niitfoundation.org/" target="_blank" style="color:#e11d48;"><i class="fas fa-arrow-up-right-from-square"></i> Visit website</a>
+            </div>
+            <div class="panel-pills">
+              <span class="ppill date"><i class="far fa-calendar-alt"></i> Aug – Sep 2025</span>
+              <span class="ppill loc"><i class="fas fa-map-marker-alt"></i> Remote</span>
             </div>
 
-            <div class="meta-pills">
-              <span class="meta-pill date"><i class="far fa-calendar-alt"></i> Aug – Sep 2025</span>
-              <span class="meta-pill loc"><i class="fas fa-map-marker-alt"></i> Remote</span>
-            </div>
-
-            <!-- KEY IMPACT METRICS -->
-            <div class="impact-label">
-              <i class="fas fa-chart-line"></i> Key Impact Metrics
-            </div>
+            <div class="section-label"><i class="fas fa-chart-line"></i> Key Impact Metrics</div>
             <div class="metrics-grid">
-              <div class="metric-card">
-                <span class="metric-number">AI</span>
-                <span class="metric-label">Threat Detection Methods</span>
-              </div>
-              <div class="metric-card">
-                <span class="metric-number purple">3+</span>
-                <span class="metric-label">Vulnerability Tests Run</span>
-              </div>
-              <div class="metric-card">
-                <span class="metric-number blue">Network</span>
-                <span class="metric-label">Anomaly Analysis</span>
-              </div>
+              <div class="metric-card"><span class="metric-num" style="font-size:1.3rem;">AI</span><span class="metric-lbl">Threat Detection Methods</span></div>
+              <div class="metric-card"><span class="metric-num purple">3+</span><span class="metric-lbl">Vulnerability Tests Run</span></div>
+              <div class="metric-card"><span class="metric-num blue" style="font-size:1.2rem;">Network</span><span class="metric-lbl">Anomaly Analysis</span></div>
             </div>
 
-            <!-- KEY CONTRIBUTIONS -->
-            <div class="contrib-label">
-              <i class="fas fa-star"></i> Key Contributions &amp; Achievements
-            </div>
+            <div class="section-label"><i class="fas fa-star"></i> Key Contributions</div>
             <div class="contrib-list">
-              <div class="contrib-item">
-                <i class="fas fa-check-circle ci-icon" style="color:#e11d48;"></i>
-                <div>Implemented AI-driven <strong>threat detection methods</strong> to identify network traffic anomalies in simulated test environments.</div>
-              </div>
-              <div class="contrib-item">
-                <i class="fas fa-check-circle ci-icon" style="color:#e11d48;"></i>
-                <div>Conducted <strong>vulnerability analysis</strong> on test systems to understand security gaps and evaluate AI-based defense strategies.</div>
-              </div>
+              <div class="contrib-item"><i class="fas fa-check-circle" style="color:#e11d48;"></i><div>Implemented AI-driven <strong>threat detection methods</strong> to identify network traffic anomalies in test environments.</div></div>
+              <div class="contrib-item"><i class="fas fa-check-circle" style="color:#e11d48;"></i><div>Conducted <strong>vulnerability analysis</strong> on test systems to evaluate AI-based defense strategies.</div></div>
             </div>
 
-            <!-- SKILLS -->
-            <div class="skills-label">
-              <i class="fas fa-code"></i> Skills &amp; Technologies
-            </div>
+            <div class="section-label"><i class="fas fa-code"></i> Skills &amp; Technologies</div>
             <div class="skills-wrap">
-              <span class="skill-badge"><i class="fas fa-shield-alt"></i> Cybersecurity</span>
-              <span class="skill-badge"><i class="fas fa-robot"></i> AI Defense</span>
-              <span class="skill-badge"><i class="fas fa-bug"></i> Threat Analysis</span>
-              <span class="skill-badge"><i class="fas fa-lock"></i> Network Security</span>
+              <span class="skill-bdg"><i class="fas fa-shield-alt"></i> Cybersecurity</span>
+              <span class="skill-bdg"><i class="fas fa-robot"></i> AI Defense</span>
+              <span class="skill-bdg"><i class="fas fa-bug"></i> Threat Analysis</span>
+              <span class="skill-bdg"><i class="fas fa-lock"></i> Network Security</span>
             </div>
           </div>
         </div>
 
-      </div>
+      </div><!-- end role-details -->
     </div>
   </div>
 </section>
@@ -678,10 +476,7 @@
 <footer id="main-footer">
   <div class="container">
     <div class="footer-inner">
-      <div class="footer-brand">
-        <span class="footer-logo">Harikarthik A.</span>
-        <p>AI Engineer · Chennai, India</p>
-      </div>
+      <div class="footer-brand"><span class="footer-logo">Harikarthik A.</span><p>AI Engineer · Chennai, India</p></div>
       <ul class="footer-nav">
         <li><a href="index.html">Home</a></li>
         <li><a href="projects.html">Projects</a></li>
@@ -698,22 +493,29 @@
 
 <script src="main.js"></script>
 <script>
+  /* Navbar */
   const toggle = document.getElementById('menuToggle');
   const navLinks = document.getElementById('navLinks');
   toggle?.addEventListener('click', () => navLinks.classList.toggle('open'));
   document.addEventListener('click', e => { if (!e.target.closest('.navbar')) navLinks.classList.remove('open'); });
 
-  // Override switchRole to also update timeline-item active state
-  const origSwitch = window.switchRole;
-  window.switchRole = function(index) {
-    document.querySelectorAll('.timeline-item').forEach(t => t.classList.remove('active'));
-    const items = document.querySelectorAll('.timeline-item');
-    if (items[index]) items[index].classList.add('active');
-    // panels
+  /* Experience switcher */
+  function switchExp(idx) {
+    document.querySelectorAll('.tl-item').forEach((t,i) => t.classList.toggle('active', i === idx));
+    document.querySelectorAll('.role-panel').forEach((p,i) => p.classList.toggle('active', i === idx));
+    /* On mobile scroll detail panel into view */
+    if (window.innerWidth <= 768) {
+      setTimeout(() => {
+        document.querySelector('.role-details').scrollIntoView({ behavior:'smooth', block:'start' });
+      }, 100);
+    }
+  }
+
+  /* Close panel (mobile) */
+  function closePanel() {
     document.querySelectorAll('.role-panel').forEach(p => p.classList.remove('active'));
-    const panel = document.getElementById('role-' + index);
-    if (panel) panel.classList.add('active');
-  };
+    document.querySelectorAll('.tl-item').forEach(t => t.classList.remove('active'));
+  }
 </script>
 </body>
 </html>
