@@ -92,7 +92,19 @@
     }
 
     /* ── DETAIL PANEL ── */
-    .role-details { min-width: 0; }
+    .role-details {
+      min-width: 0;
+      max-height: calc(100vh - 180px);
+      overflow-y: auto;
+      overflow-x: hidden;
+      border-radius: 20px;
+      scrollbar-width: thin;
+      scrollbar-color: #cbd5e1 #f1f5f9;
+    }
+    .role-details::-webkit-scrollbar { width: 5px; }
+    .role-details::-webkit-scrollbar-track { background: transparent; border-radius: 10px; }
+    .role-details::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+    .role-details::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
 
     .role-panel {
       display: none;

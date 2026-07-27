@@ -17,6 +17,9 @@ window.addEventListener('load', () => {
     initTheme();
     initPageTransitions();
     initSkillsInteraction();
+    initTextReveal();
+    initMagneticButtons();
+    initParallax();
 });
 
 /* 2. DARK MODE TOGGLE */
@@ -43,7 +46,7 @@ function initScrollAnimations() {
             }
         });
     }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-    document.querySelectorAll('.fade-in-up').forEach(el => observer.observe(el));
+    document.querySelectorAll('.fade-in-up, .apple-fade').forEach(el => observer.observe(el));
 }
 
 /* 4. EXPERIENCE PAGE: ROLE SWITCHER */
@@ -230,4 +233,3 @@ window.addEventListener('click', e => {
     const modal = document.getElementById('videoModal');
     if (e.target === modal) window.closeModal();
 });
-
