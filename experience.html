@@ -8,268 +8,428 @@
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Bebas+Neue&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <style>
-    /* PAGE HERO */
-    .page-hero { padding:160px 0 60px; background:var(--cream); position:relative; overflow:hidden; }
-    .page-hero::before { content:'CAREER'; font-family:var(--font-display); font-size:clamp(6rem,18vw,16rem); color:rgba(0,0,0,0.03); position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); white-space:nowrap; pointer-events:none; }
-    .page-hero .container { position:relative; z-index:1; }
-    .page-hero-label { font-family:var(--font-display); font-size:clamp(3.5rem,10vw,7rem); color:var(--ink); line-height:1; }
-    .page-hero-sub { margin-top:16px; color:var(--muted); font-size:1.05rem; max-width:480px; line-height:1.7; }
+    /* ── PAGE ── */
+    .exp-page {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #eff6ff 0%, #ffffff 50%, #fffbeb 100%);
+      position: relative; overflow: hidden;
+      padding-top: 100px; padding-bottom: 80px;
+    }
+    [data-theme="dark"] .exp-page {
+      background: linear-gradient(135deg, #030712 0%, #111827 50%, #1c1917 100%);
+    }
 
-    /* EXP LAYOUT */
-    .exp-section { background:#f0f4ff; padding:60px 0 100px; }
+    /* Grid pattern like Mahadevan */
+    .exp-page::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(to right, rgba(128,128,128,0.06) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(128,128,128,0.06) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none; z-index: 0;
+    }
 
-    .exp-layout {
+    /* Gradient orbs */
+    .exp-orb-1 {
+      position: absolute; top: 0; left: 25%;
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(251,191,36,0.08) 0%, transparent 70%);
+      border-radius: 50%; filter: blur(80px); pointer-events: none;
+    }
+    .exp-orb-2 {
+      position: absolute; bottom: 0; right: 25%;
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(167,139,250,0.08) 0%, transparent 70%);
+      border-radius: 50%; filter: blur(80px); pointer-events: none;
+    }
+    [data-theme="dark"] .exp-orb-1 { background: radial-gradient(circle, rgba(245,158,11,0.06) 0%, transparent 70%); }
+    [data-theme="dark"] .exp-orb-2 { background: radial-gradient(circle, rgba(139,92,246,0.06) 0%, transparent 70%); }
+
+    .exp-inner { position: relative; z-index: 1; }
+
+    /* ── PAGE HEADER ── */
+    .exp-header { text-align: center; margin-bottom: 56px; }
+
+    .exp-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 8px 16px; border-radius: 100px;
+      background: rgba(255,255,255,0.7); backdrop-filter: blur(12px);
+      border: 1px solid rgba(0,0,0,0.08);
+      font-size: 0.85rem; font-weight: 600; color: #374151;
+      margin-bottom: 20px; box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    }
+    .exp-badge i { color: #6366f1; font-size: 0.85rem; }
+    [data-theme="dark"] .exp-badge {
+      background: rgba(31,41,55,0.7);
+      border-color: rgba(255,255,255,0.08); color: #f3f4f6;
+    }
+    [data-theme="dark"] .exp-badge i { color: #fde68a; }
+
+    .exp-h1 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 800; line-height: 1.1;
+      color: #111827; margin-bottom: 16px;
+      letter-spacing: -0.03em;
+    }
+    .exp-h1 span {
+      background: linear-gradient(135deg, #6366f1, #ec4899, #8b5cf6);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    [data-theme="dark"] .exp-h1 { color: #f9fafb; }
+    [data-theme="dark"] .exp-h1 span {
+      background: linear-gradient(135deg, #fde68a, #f9a8d4, #c4b5fd);
+      -webkit-background-clip: text; background-clip: text;
+    }
+
+    .exp-subtitle {
+      font-size: 1rem; color: #6b7280; max-width: 560px;
+      margin: 0 auto; line-height: 1.7;
+    }
+    [data-theme="dark"] .exp-subtitle { color: #d1d5db; }
+
+    /* ── MAIN GRID ── */
+    .exp-grid {
       display: grid;
-      grid-template-columns: 320px 1fr;
+      grid-template-columns: 420px 1fr;
       gap: 32px;
       align-items: start;
     }
 
-    /* ── TIMELINE SIDEBAR ── */
-    .timeline-sidebar { position: sticky; top: 90px; }
+    /* ── LEFT COLUMN ── */
+    .exp-left { display: flex; flex-direction: column; gap: 16px; }
 
-    .timeline-header {
+    .timeline-hdr {
       display: flex; align-items: center; gap: 8px;
-      font-size: 0.68rem; font-weight: 800;
-      text-transform: uppercase; letter-spacing: 2.5px;
-      color: var(--muted);
-      padding-bottom: 16px;
-      border-bottom: 1px solid var(--border);
-      margin-bottom: 20px;
+      padding: 0 4px; margin-bottom: 4px;
     }
-    .timeline-header i { color: var(--blue); font-size: 0.85rem; }
+    .timeline-hdr i { color: #6366f1; font-size: 0.9rem; }
+    [data-theme="dark"] .timeline-hdr i { color: #fde68a; }
+    .timeline-hdr-txt {
+      font-size: 0.7rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 2px;
+      color: #6b7280;
+    }
+    [data-theme="dark"] .timeline-hdr-txt { color: #9ca3af; }
+    .timeline-hdr-line { flex: 1; height: 1px; background: #e5e7eb; }
+    [data-theme="dark"] .timeline-hdr-line { background: #374151; }
 
-    .timeline-list { display: flex; flex-direction: column; gap: 12px; }
-
-    .tl-item {
-      background: var(--white);
-      border: 1.5px solid var(--border);
-      border-radius: 16px;
-      padding: 16px 44px 16px 16px;
+    /* Experience card */
+    .exp-card {
+      background: rgba(255,255,255,0.8);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(0,0,0,0.07);
+      border-radius: 20px;
+      padding: 18px 48px 18px 18px;
       cursor: pointer;
       position: relative;
-      transition: all .3s;
+      transition: all .3s cubic-bezier(0.4,0,0.2,1);
+      box-shadow: 0 1px 4px rgba(0,0,0,0.04);
     }
-    .tl-item:hover { border-color: rgba(37,99,235,0.3); transform: translateX(4px); }
-    .tl-item.active {
-      border: 2px solid #6366f1;
-      background: linear-gradient(135deg,#eef2ff,#f5f3ff);
-      box-shadow: 0 4px 20px rgba(99,102,241,0.15);
+    .exp-card:hover {
+      border-color: rgba(99,102,241,0.3);
+      box-shadow: 0 4px 20px rgba(99,102,241,0.1);
+      transform: translateY(-2px);
+    }
+    .exp-card.active {
+      background: rgba(255,255,255,0.9);
+      border: 1.5px solid #6366f1;
+      box-shadow: 0 8px 24px rgba(99,102,241,0.15);
+    }
+
+    [data-theme="dark"] .exp-card {
+      background: rgba(17,24,39,0.7);
+      border-color: rgba(255,255,255,0.08);
+    }
+    [data-theme="dark"] .exp-card:hover {
+      border-color: rgba(245,158,11,0.35);
+      box-shadow: 0 4px 20px rgba(245,158,11,0.1);
+    }
+    [data-theme="dark"] .exp-card.active {
+      border-color: #f59e0b;
+      background: rgba(245,158,11,0.05);
+      box-shadow: 0 8px 24px rgba(245,158,11,0.12);
     }
 
     /* Arrow button */
-    .tl-arrow {
-      position: absolute; right: 12px; top: 50%; transform: translateY(-50%);
-      width: 28px; height: 28px; border-radius: 50%;
-      background: #e2e8f0; color: #64748b;
+    .exp-card-arrow {
+      position: absolute; right: 14px; top: 50%; transform: translateY(-50%);
+      width: 30px; height: 30px; border-radius: 50%;
+      background: #e5e7eb; color: #6b7280;
       display: flex; align-items: center; justify-content: center;
-      font-size: 0.7rem; transition: all .3s;
+      font-size: 0.72rem; transition: all .3s;
     }
-    .tl-item.active .tl-arrow { background: #6366f1; color: white; }
+    .exp-card.active .exp-card-arrow { background: #6366f1; color: #fff; }
+    [data-theme="dark"] .exp-card.active .exp-card-arrow { background: #f59e0b; color: #111827; }
+    [data-theme="dark"] .exp-card-arrow { background: #1f2937; color: #9ca3af; }
 
-    .tl-top { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
-    .tl-logo {
-      width: 40px; height: 40px; border-radius: 10px;
-      background: var(--white); border: 1px solid var(--border);
+    .exp-card-top { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; padding-right: 4px; }
+    .exp-card-logo {
+      width: 42px; height: 42px; border-radius: 10px;
+      border: 1px solid rgba(0,0,0,0.08);
+      overflow: hidden; flex-shrink: 0;
       display: flex; align-items: center; justify-content: center;
-      overflow: hidden; padding: 3px; flex-shrink: 0;
+      background: #fff; padding: 4px;
     }
-    .tl-logo img { width: 100%; object-fit: contain; }
-    .tl-role { font-size: 0.92rem; font-weight: 700; color: var(--ink); }
-    .tl-company { font-size: 0.75rem; color: var(--muted); margin-top: 1px; }
+    .exp-card-logo img { width: 100%; object-fit: contain; }
+    [data-theme="dark"] .exp-card-logo { background: #111827; border-color: rgba(255,255,255,0.08); }
 
-    .tl-date {
+    .exp-card-role { font-size: 0.9rem; font-weight: 700; color: #111827; line-height: 1.2; }
+    .exp-card.active .exp-card-role { color: #6366f1; }
+    [data-theme="dark"] .exp-card-role { color: #f9fafb; }
+    [data-theme="dark"] .exp-card.active .exp-card-role { color: #f59e0b; }
+    .exp-card-company { font-size: 0.78rem; color: #6b7280; margin-top: 1px; }
+    [data-theme="dark"] .exp-card-company { color: #9ca3af; }
+
+    .exp-card-date {
       display: inline-flex; align-items: center; gap: 5px;
       font-size: 0.68rem; font-weight: 700;
-      background: #ede9fe; color: #7c3aed;
+      background: rgba(99,102,241,0.1); color: #6366f1;
       padding: 3px 10px; border-radius: 6px; margin-bottom: 8px;
     }
-    .tl-tags { display: flex; flex-wrap: wrap; gap: 5px; }
-    .tl-tag {
-      font-size: 0.65rem; font-weight: 600;
-      background: #f1f5f9; color: #64748b;
-      border: 1px solid #e2e8f0; padding: 2px 8px; border-radius: 4px;
+    [data-theme="dark"] .exp-card-date { background: rgba(245,158,11,0.12); color: #f59e0b; }
+
+    .exp-card-tags { display: flex; flex-wrap: wrap; gap: 5px; }
+    .exp-card-tag {
+      font-size: 0.64rem; font-weight: 600;
+      background: #f3f4f6; color: #6b7280;
+      border: 1px solid #e5e7eb; padding: 2px 8px; border-radius: 4px;
+    }
+    [data-theme="dark"] .exp-card-tag { background: #1f2937; border-color: rgba(255,255,255,0.07); color: #9ca3af; }
+
+    /* Tip box */
+    .exp-tip {
+      display: flex; align-items: flex-start; gap: 12px;
+      padding: 16px;
+      background: rgba(255,255,255,0.6);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(0,0,0,0.07);
+      border-radius: 16px;
+      margin-top: 4px;
+    }
+    [data-theme="dark"] .exp-tip { background: rgba(31,41,55,0.6); border-color: rgba(255,255,255,0.08); }
+    .exp-tip-icon {
+      width: 36px; height: 36px; border-radius: 10px;
+      background: rgba(99,102,241,0.1);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; font-size: 0.9rem; color: #6366f1;
+    }
+    [data-theme="dark"] .exp-tip-icon { background: rgba(245,158,11,0.1); color: #f59e0b; }
+    .exp-tip h4 { font-size: 0.8rem; font-weight: 700; color: #111827; margin-bottom: 3px; }
+    [data-theme="dark"] .exp-tip h4 { color: #f9fafb; }
+    .exp-tip p { font-size: 0.72rem; color: #6b7280; line-height: 1.5; }
+    [data-theme="dark"] .exp-tip p { color: #9ca3af; }
+
+    /* ── RIGHT COLUMN — DETAIL PANEL ── */
+    .exp-detail-wrap {
+      position: sticky; top: 90px;
+      height: calc(100vh - 160px);
+      max-height: 820px; min-height: 600px;
     }
 
-    /* ── DETAIL PANEL ── */
-    .role-details {
-      min-width: 0;
-      max-height: calc(100vh - 180px);
-      overflow-y: auto;
-      overflow-x: hidden;
-      border-radius: 20px;
-      scrollbar-width: thin;
-      scrollbar-color: #cbd5e1 #f1f5f9;
+    .exp-detail-panel {
+      background: rgba(255,255,255,0.7);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(0,0,0,0.08);
+      border-radius: 24px;
+      height: 100%; overflow: hidden;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+      display: flex; flex-direction: column;
+      animation: panelIn .3s ease forwards;
     }
-    .role-details::-webkit-scrollbar { width: 5px; }
-    .role-details::-webkit-scrollbar-track { background: transparent; border-radius: 10px; }
-    .role-details::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
-    .role-details::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
-
-    .role-panel {
-      display: none;
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      overflow: hidden;
-      box-shadow: 0 2px 16px rgba(0,0,0,0.06);
-      animation: panelIn .35s ease forwards;
-    }
-    .role-panel.active { display: block; }
     @keyframes panelIn {
-      from { opacity:0; transform:translateY(12px); }
-      to   { opacity:1; transform:translateY(0); }
+      from { opacity:0; transform: scale(0.98) translateY(8px); }
+      to   { opacity:1; transform: scale(1) translateY(0); }
+    }
+    [data-theme="dark"] .exp-detail-panel {
+      background: rgba(17,24,39,0.7);
+      border-color: rgba(255,255,255,0.08);
     }
 
     /* Panel header */
-    .panel-hdr {
+    .detail-hdr {
       display: flex; align-items: center; justify-content: space-between;
-      padding: 18px 24px;
-      border-bottom: 1px solid var(--border);
+      padding: 18px 22px;
+      border-bottom: 1px solid rgba(0,0,0,0.07);
+      flex-shrink: 0;
     }
-    .panel-hdr-left { display: flex; align-items: center; gap: 12px; }
-    .panel-hdr-logo {
-      width: 44px; height: 44px; border-radius: 10px;
-      border: 1px solid var(--border); padding: 4px;
+    [data-theme="dark"] .detail-hdr { border-color: rgba(255,255,255,0.07); }
+    .detail-hdr-left { display: flex; align-items: center; gap: 12px; }
+    .detail-hdr-logo {
+      width: 40px; height: 40px; border-radius: 10px;
+      border: 1px solid rgba(0,0,0,0.08);
+      background: #fff; padding: 4px;
       display: flex; align-items: center; justify-content: center; overflow: hidden;
     }
-    .panel-hdr-logo img { width: 100%; object-fit: contain; }
-    .panel-hdr-role { font-size: 0.8rem; color: var(--muted); font-weight: 600; }
-    .panel-hdr-company { font-size: 0.95rem; font-weight: 800; color: var(--ink); }
-    .panel-close-btn {
-      width: 32px; height: 32px; border-radius: 50%;
-      border: 1.5px solid var(--border); background: var(--white);
-      color: var(--muted); display: flex; align-items: center; justify-content: center;
-      font-size: 0.85rem; cursor: pointer; transition: all .2s;
+    [data-theme="dark"] .detail-hdr-logo { background: #111827; border-color: rgba(255,255,255,0.08); }
+    .detail-hdr-logo img { width: 100%; object-fit: contain; }
+    .detail-hdr-role { font-size: 0.8rem; color: #6b7280; font-weight: 500; }
+    [data-theme="dark"] .detail-hdr-role { color: #9ca3af; }
+    .detail-hdr-company { font-size: 0.95rem; font-weight: 700; color: #111827; }
+    [data-theme="dark"] .detail-hdr-company { color: #f9fafb; }
+    .detail-close {
+      width: 30px; height: 30px; border-radius: 50%;
+      border: 1px solid rgba(0,0,0,0.1);
+      background: rgba(0,0,0,0.04); color: #6b7280;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.8rem; cursor: pointer; transition: all .2s;
     }
-    .panel-close-btn:hover { background: #fee2e2; color: #e11d48; border-color: #fecaca; }
+    .detail-close:hover { background: #fee2e2; color: #e11d48; border-color: #fecaca; }
+    [data-theme="dark"] .detail-close { background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.1); color: #9ca3af; }
 
-    /* Panel body */
-    .panel-body { padding: 28px 28px 32px; }
+    /* Panel scrollable body */
+    .detail-body {
+      overflow-y: auto; flex: 1; padding: 24px 24px 28px;
+      scrollbar-width: thin; scrollbar-color: #d1d5db transparent;
+    }
+    .detail-body::-webkit-scrollbar { width: 5px; }
+    .detail-body::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 10px; }
+    [data-theme="dark"] .detail-body { scrollbar-color: #374151 transparent; }
+    [data-theme="dark"] .detail-body::-webkit-scrollbar-thumb { background: #374151; }
 
-    .panel-title { font-size: clamp(1.5rem,3.5vw,2rem); font-weight: 800; color: var(--ink); margin-bottom: 6px; }
-    .panel-company-row {
+    .detail-title { font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 800; color: #111827; line-height: 1.1; margin-bottom: 8px; }
+    [data-theme="dark"] .detail-title { color: #f9fafb; }
+
+    .detail-company-row {
       display: flex; align-items: center; gap: 10px;
-      font-size: 0.95rem; color: var(--muted); font-weight: 600;
-      margin-bottom: 18px;
+      font-size: 0.9rem; color: #6b7280; font-weight: 500; margin-bottom: 18px;
     }
-    .panel-company-row a {
-      font-size: 0.82rem; color: #6366f1; font-weight: 700;
+    [data-theme="dark"] .detail-company-row { color: #9ca3af; }
+    .detail-company-row a {
       display: inline-flex; align-items: center; gap: 4px;
+      font-size: 0.8rem; color: #6366f1; font-weight: 700;
     }
-    .panel-company-row a:hover { text-decoration: underline; }
+    [data-theme="dark"] .detail-company-row a { color: #f59e0b; }
 
-    .panel-pills { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px; }
-    .ppill {
+    .detail-pills { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px; }
+    .detail-pill {
       display: inline-flex; align-items: center; gap: 6px;
-      padding: 7px 14px; border-radius: 10px;
-      font-size: 0.8rem; font-weight: 700;
+      padding: 6px 14px; border-radius: 10px;
+      font-size: 0.78rem; font-weight: 700;
     }
-    .ppill.date { background: #fdf4ff; color: #a21caf; border: 1px solid #f0abfc; }
-    .ppill.loc  { background: #eff6ff; color: #2563eb; border: 1px solid #bfdbfe; }
+    .detail-pill.date { background: rgba(99,102,241,0.1); color: #6366f1; border: 1px solid rgba(99,102,241,0.2); }
+    .detail-pill.loc  { background: rgba(16,185,129,0.08); color: #059669; border: 1px solid rgba(16,185,129,0.15); }
+    [data-theme="dark"] .detail-pill.date { background: rgba(245,158,11,0.1); color: #f59e0b; border-color: rgba(245,158,11,0.2); }
+    [data-theme="dark"] .detail-pill.loc  { background: rgba(52,211,153,0.08); color: #34d399; border-color: rgba(52,211,153,0.15); }
 
-    /* KEY IMPACT METRICS */
-    .section-label {
+    /* Section labels */
+    .det-section-lbl {
       display: flex; align-items: center; gap: 7px;
       font-size: 0.68rem; font-weight: 800;
       text-transform: uppercase; letter-spacing: 2px;
-      color: var(--muted); margin-bottom: 14px;
+      color: #9ca3af; margin-bottom: 14px;
     }
-    .section-label i { color: #6366f1; font-size: 0.8rem; }
+    .det-section-lbl i { font-size: 0.78rem; }
+    [data-theme="dark"] .det-section-lbl { color: #6b7280; }
 
+    /* Metrics grid */
     .metrics-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-      gap: 10px;
-      margin-bottom: 28px;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 10px; margin-bottom: 24px;
     }
     .metric-card {
-      background: #f8fafc; border: 1px solid #e2e8f0;
-      border-radius: 12px; padding: 18px 14px; text-align: center;
+      background: rgba(249,250,251,0.8);
+      border: 1px solid #e5e7eb;
+      border-radius: 14px; padding: 18px 14px; text-align: center;
     }
+    [data-theme="dark"] .metric-card { background: rgba(17,24,39,0.6); border-color: rgba(255,255,255,0.06); }
     .metric-num {
-      font-size: 1.8rem; font-weight: 900;
-      color: #d946ef; line-height: 1; display: block; margin-bottom: 5px;
+      font-size: 1.7rem; font-weight: 900; line-height: 1;
+      color: #ec4899; display: block; margin-bottom: 5px;
     }
-    .metric-num.purple { color: #7c3aed; }
-    .metric-num.blue   { color: #2563eb; }
-    .metric-lbl { font-size: 0.72rem; font-weight: 600; color: #64748b; line-height: 1.3; }
+    .metric-num.purple { color: #8b5cf6; }
+    .metric-num.blue   { color: #3b82f6; }
+    .metric-lbl { font-size: 0.7rem; font-weight: 600; color: #9ca3af; line-height: 1.3; }
 
-    /* CONTRIBUTIONS */
-    .contrib-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 24px; }
+    /* Contributions */
+    .contrib-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 22px; }
     .contrib-item {
       display: flex; gap: 10px; align-items: flex-start;
-      background: #f8fafc; border: 1px solid #e2e8f0;
+      background: rgba(249,250,251,0.8); border: 1px solid #e5e7eb;
       border-radius: 10px; padding: 12px 14px;
-      font-size: 0.86rem; color: var(--text); line-height: 1.6;
+      font-size: 0.84rem; color: #374151; line-height: 1.6;
     }
-    .contrib-item i { flex-shrink: 0; margin-top: 2px; font-size: 0.8rem; }
-    .contrib-item strong { color: var(--ink); }
+    [data-theme="dark"] .contrib-item { background: rgba(17,24,39,0.6); border-color: rgba(255,255,255,0.05); color: #d1d5db; }
+    .contrib-item i { flex-shrink: 0; margin-top: 2px; color: #6366f1; font-size: 0.82rem; }
+    [data-theme="dark"] .contrib-item i { color: #818cf8; }
+    .contrib-item strong { color: #111827; }
+    [data-theme="dark"] .contrib-item strong { color: #f9fafb; }
 
-    /* SKILLS */
-    .skills-wrap { display: flex; flex-wrap: wrap; gap: 8px; }
+    /* Skills */
+    .skills-wrap { display: flex; flex-wrap: wrap; gap: 7px; }
     .skill-bdg {
       display: inline-flex; align-items: center; gap: 5px;
-      background: var(--white); border: 1.5px solid var(--border);
+      background: #fff; border: 1.5px solid #e5e7eb;
       border-radius: 100px; padding: 5px 12px;
-      font-size: 0.78rem; font-weight: 700; color: var(--ink);
+      font-size: 0.75rem; font-weight: 700; color: #374151;
       transition: all .2s;
     }
     .skill-bdg:hover { border-color: #6366f1; color: #6366f1; }
+    [data-theme="dark"] .skill-bdg { background: #1f2937; border-color: rgba(255,255,255,0.08); color: #e5e7eb; }
+    [data-theme="dark"] .skill-bdg:hover { border-color: #f59e0b; color: #f59e0b; }
 
-    /* ── DARK MODE ── */
-    [data-theme="dark"] .exp-section { background: #080c1a; }
-    [data-theme="dark"] .tl-item { background: #1a1a1a; border-color: rgba(255,255,255,0.08); }
-    [data-theme="dark"] .tl-item.active { background: rgba(99,102,241,0.1); border-color: #6366f1; }
-    [data-theme="dark"] .tl-arrow { background: #2a2a2a; color: #aaa; }
-    [data-theme="dark"] .tl-tag { background: #222; border-color: rgba(255,255,255,0.07); color: #888; }
-    [data-theme="dark"] .tl-date { background: #2d1b4e; color: #c084fc; }
-    [data-theme="dark"] .role-panel { background: #1a1a1a; border-color: rgba(255,255,255,0.08); }
-    [data-theme="dark"] .panel-hdr { border-color: rgba(255,255,255,0.07); }
-    [data-theme="dark"] .panel-close-btn { background: #222; border-color: rgba(255,255,255,0.1); color: #aaa; }
-    [data-theme="dark"] .metric-card { background: #222; border-color: rgba(255,255,255,0.07); }
-    [data-theme="dark"] .contrib-item { background: #222; border-color: rgba(255,255,255,0.06); }
-    [data-theme="dark"] .skill-bdg { background: #2a2a2a; border-color: rgba(255,255,255,0.1); color: #f0ece4; }
-    [data-theme="dark"] .ppill.date { background: #2d1b4e; color: #e879f9; border-color: #7e22ce; }
-    [data-theme="dark"] .ppill.loc { background: rgba(37,99,235,0.12); color: #60a5fa; border-color: rgba(37,99,235,0.3); }
+    /* ── MOBILE BOTTOM SHEET ── */
+    .mobile-sheet-backdrop {
+      display: none; position: fixed; inset: 0;
+      background: rgba(0,0,0,0.85); backdrop-filter: blur(4px);
+      z-index: 9998;
+    }
+    .mobile-sheet-backdrop.show { display: block; }
 
-    /* ── MOBILE ── */
-    @media (max-width: 768px) {
-      .page-hero { padding: 110px 0 40px; }
-      .exp-section { padding: 40px 0 60px; }
-      .exp-layout { grid-template-columns: 1fr; gap: 20px; }
-      .timeline-sidebar { position: static; }
+    .mobile-sheet {
+      display: none; position: fixed;
+      left: 0; right: 0; bottom: 0;
+      height: 90vh; z-index: 9999;
+      background: #fff;
+      border-radius: 24px 24px 0 0;
+      border-top: 2px solid #e5e7eb;
+      box-shadow: 0 -8px 40px rgba(0,0,0,0.2);
+      flex-direction: column;
+      transform: translateY(100%);
+      transition: transform .4s cubic-bezier(0.4,0,0.2,1);
+    }
+    [data-theme="dark"] .mobile-sheet { background: #111827; border-color: #374151; }
+    .mobile-sheet.show { display: flex; transform: translateY(0); }
 
-      /* Horizontal scroll on mobile */
-      .timeline-list {
-        flex-direction: row;
-        overflow-x: auto;
-        padding-bottom: 8px;
-        gap: 10px;
-        scroll-snap-type: x mandatory;
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: none;
-      }
-      .timeline-list::-webkit-scrollbar { display: none; }
-      .tl-item {
-        min-width: 220px; flex-shrink: 0;
-        scroll-snap-align: start;
-        padding: 12px 38px 12px 12px;
-      }
-      .tl-item:hover { transform: none; }
-      .tl-role { font-size: 0.82rem; }
-      .panel-body { padding: 18px; }
-      .panel-title { font-size: 1.3rem; }
+    .sheet-drag {
+      flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      padding: 12px; cursor: grab;
+      border-bottom: 1px solid rgba(0,0,0,0.07);
+    }
+    [data-theme="dark"] .sheet-drag { border-color: rgba(255,255,255,0.07); }
+    .sheet-drag-handle {
+      width: 48px; height: 5px; border-radius: 100px;
+      background: #d1d5db;
+    }
+    [data-theme="dark"] .sheet-drag-handle { background: #4b5563; }
+
+    .sheet-body { overflow-y: auto; flex: 1; padding: 20px; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .exp-grid { grid-template-columns: 1fr; gap: 20px; }
+      .exp-detail-wrap { display: none; }
+      .exp-tip { display: none; }
+    }
+    @media (max-width: 600px) {
+      .exp-page { padding-top: 80px; }
+      .exp-h1 { font-size: 1.8rem; }
       .metrics-grid { grid-template-columns: 1fr 1fr; }
-      .metric-num { font-size: 1.5rem; }
-      .panel-pills { gap: 6px; }
-      .ppill { padding: 5px 10px; font-size: 0.72rem; }
     }
   </style>
 </head>
 <body class="loading">
 
-<div id="preloader"><div class="loader-ring"></div></div>
+<div id="preloader">
+  <div class="loader-wrap">
+    <div class="loader-logo">H</div>
+    <div class="loader-bar-track"><div class="loader-bar-fill"></div></div>
+    <div class="loader-text">Loading...</div>
+  </div>
+</div>
 <div class="page-transition-overlay" id="pageOverlay"></div>
 
 <!-- NAVBAR -->
@@ -291,198 +451,131 @@
   </nav>
 </div>
 
-<!-- PAGE HERO -->
-<div class="page-hero">
-  <div class="container fade-in-up">
-    <span class="eyebrow">Career</span>
-    <h1 class="page-hero-label">Experience</h1>
-    <p class="page-hero-sub">Internships where I shipped real AI products and built full-stack systems.</p>
-  </div>
-</div>
+<!-- EXPERIENCE PAGE -->
+<div class="exp-page">
+  <div class="exp-orb-1"></div>
+  <div class="exp-orb-2"></div>
+  <div class="container exp-inner">
 
-<!-- EXPERIENCE -->
-<section class="exp-section">
-  <div class="container">
-    <div class="exp-layout fade-in-up">
+    <!-- Header -->
+    <div class="exp-header fade-in-up">
+      <div class="exp-badge"><i class="fas fa-briefcase"></i> Career Journey</div>
+      <h1 class="exp-h1">Professional <span>Experience</span></h1>
+      <p class="exp-subtitle">Internships where I shipped real AI products, built full-stack systems, and worked across security and front-end domains.</p>
+    </div>
 
-      <!-- TIMELINE -->
-      <div class="timeline-sidebar">
-        <div class="timeline-header"><i class="fas fa-th-large"></i> Timeline</div>
-        <div class="timeline-list">
+    <!-- Grid -->
+    <div class="exp-grid fade-in-up">
 
-          <div class="tl-item active" onclick="switchExp(0)">
-            <div class="tl-top">
-              <div class="tl-logo"><img src="Infosys.webp" alt="Infosys"></div>
-              <div><div class="tl-role">AI Intern</div><div class="tl-company">Infosys Springboard</div></div>
+      <!-- LEFT: Timeline cards -->
+      <div class="exp-left">
+
+        <div class="timeline-hdr">
+          <i class="fas fa-th-large"></i>
+          <span class="timeline-hdr-txt">Timeline</span>
+          <div class="timeline-hdr-line"></div>
+        </div>
+
+        <!-- Card 0: Infosys -->
+        <div class="exp-card active" onclick="selectExp(0)">
+          <div class="exp-card-top">
+            <div class="exp-card-logo"><img src="Infosys.webp" alt="Infosys"></div>
+            <div>
+              <div class="exp-card-role">AI Intern</div>
+              <div class="exp-card-company">Infosys Springboard</div>
             </div>
-            <div class="tl-date"><i class="far fa-calendar"></i> Nov 2025 – Feb 2026</div>
-            <div class="tl-tags"><span class="tl-tag">Deep Learning</span><span class="tl-tag">CNN</span><span class="tl-tag">LSTM</span></div>
-            <div class="tl-arrow"><i class="fas fa-chevron-right"></i></div>
+          </div>
+          <div class="exp-card-date"><i class="far fa-calendar"></i> Nov 2025 – Feb 2026</div>
+          <div class="exp-card-tags">
+            <span class="exp-card-tag">Deep Learning</span>
+            <span class="exp-card-tag">CNN</span>
+            <span class="exp-card-tag">LSTM</span>
+            <span class="exp-card-tag">+2</span>
+          </div>
+          <div class="exp-card-arrow"><i class="fas fa-chevron-right"></i></div>
+        </div>
+
+        <!-- Card 1: Edunet -->
+        <div class="exp-card" onclick="selectExp(1)">
+          <div class="exp-card-top">
+            <div class="exp-card-logo"><img src="edunet.webp" alt="Edunet"></div>
+            <div>
+              <div class="exp-card-role">Front End Dev Intern</div>
+              <div class="exp-card-company">Edunet Foundation</div>
+            </div>
+          </div>
+          <div class="exp-card-date"><i class="far fa-calendar"></i> Aug – Oct 2025</div>
+          <div class="exp-card-tags">
+            <span class="exp-card-tag">Flask</span>
+            <span class="exp-card-tag">HTML</span>
+            <span class="exp-card-tag">REST API</span>
+          </div>
+          <div class="exp-card-arrow"><i class="fas fa-chevron-right"></i></div>
+        </div>
+
+        <!-- Card 2: NIIT -->
+        <div class="exp-card" onclick="selectExp(2)">
+          <div class="exp-card-top">
+            <div class="exp-card-logo"><img src="NIIT.webp" alt="NIIT"></div>
+            <div>
+              <div class="exp-card-role">Security Intern</div>
+              <div class="exp-card-company">NIIT Foundation</div>
+            </div>
+          </div>
+          <div class="exp-card-date"><i class="far fa-calendar"></i> Aug – Sep 2025</div>
+          <div class="exp-card-tags">
+            <span class="exp-card-tag">Cybersec</span>
+            <span class="exp-card-tag">AI Defense</span>
+          </div>
+          <div class="exp-card-arrow"><i class="fas fa-chevron-right"></i></div>
+        </div>
+
+        <!-- Tip box -->
+        <div class="exp-tip">
+          <div class="exp-tip-icon"><i class="fas fa-sparkles"></i></div>
+          <div>
+            <h4>Tip</h4>
+            <p>Click on different roles to see detailed breakdowns of contributions, metrics, and technologies used in each position.</p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- RIGHT: Detail panel (desktop) -->
+      <div class="exp-detail-wrap">
+        <div class="exp-detail-panel" id="detailPanel">
+
+          <div class="detail-hdr">
+            <div class="detail-hdr-left">
+              <div class="detail-hdr-logo" id="detailLogo">
+                <img src="Infosys.webp" alt="" id="detailLogoImg">
+              </div>
+              <div>
+                <div class="detail-hdr-role" id="detailHdrRole">Artificial Intelligence Intern</div>
+                <div class="detail-hdr-company" id="detailHdrCompany">Infosys Springboard</div>
+              </div>
+            </div>
+            <button class="detail-close" onclick="closeDetail()"><i class="fas fa-times"></i></button>
           </div>
 
-          <div class="tl-item" onclick="switchExp(1)">
-            <div class="tl-top">
-              <div class="tl-logo"><img src="edunet.webp" alt="Edunet"></div>
-              <div><div class="tl-role">Front End Dev</div><div class="tl-company">Edunet Foundation</div></div>
-            </div>
-            <div class="tl-date"><i class="far fa-calendar"></i> Aug – Oct 2025</div>
-            <div class="tl-tags"><span class="tl-tag">Flask</span><span class="tl-tag">HTML</span><span class="tl-tag">REST API</span></div>
-            <div class="tl-arrow"><i class="fas fa-chevron-right"></i></div>
+          <div class="detail-body" id="detailBody">
+            <!-- filled by JS -->
           </div>
-
-          <div class="tl-item" onclick="switchExp(2)">
-            <div class="tl-top">
-              <div class="tl-logo"><img src="NIIT.webp" alt="NIIT"></div>
-              <div><div class="tl-role">Security Intern</div><div class="tl-company">NIIT Foundation</div></div>
-            </div>
-            <div class="tl-date"><i class="far fa-calendar"></i> Aug – Sep 2025</div>
-            <div class="tl-tags"><span class="tl-tag">Cybersec</span><span class="tl-tag">AI Defense</span></div>
-            <div class="tl-arrow"><i class="fas fa-chevron-right"></i></div>
-          </div>
-
         </div>
       </div>
 
-      <!-- DETAIL PANELS -->
-      <div class="role-details">
-
-        <!-- Infosys -->
-        <div class="role-panel active" id="exp-0">
-          <div class="panel-hdr">
-            <div class="panel-hdr-left">
-              <div class="panel-hdr-logo"><img src="Infosys.webp" alt="Infosys"></div>
-              <div><div class="panel-hdr-role">Artificial Intelligence Intern</div><div class="panel-hdr-company">Infosys Springboard</div></div>
-            </div>
-            <button class="panel-close-btn" onclick="closePanel()"><i class="fas fa-times"></i></button>
-          </div>
-          <div class="panel-body">
-            <h1 class="panel-title">Artificial Intelligence Intern</h1>
-            <div class="panel-company-row">
-              Infosys Springboard
-              <a href="https://infyspringboard.onwingspan.com/" target="_blank"><i class="fas fa-arrow-up-right-from-square"></i> Visit website</a>
-            </div>
-            <div class="panel-pills">
-              <span class="ppill date"><i class="far fa-calendar-alt"></i> Nov 2025 – Feb 2026</span>
-              <span class="ppill loc"><i class="fas fa-map-marker-alt"></i> Remote</span>
-            </div>
-
-            <div class="section-label"><i class="fas fa-chart-line"></i> Key Impact Metrics</div>
-            <div class="metrics-grid">
-              <div class="metric-card"><span class="metric-num">2</span><span class="metric-lbl">AI Models Built (CNN + LSTM)</span></div>
-              <div class="metric-card"><span class="metric-num purple">95%+</span><span class="metric-lbl">Classification Accuracy</span></div>
-              <div class="metric-card"><span class="metric-num blue">3</span><span class="metric-lbl">Emotion Classes Detected</span></div>
-            </div>
-
-            <div class="section-label"><i class="fas fa-star"></i> Key Contributions</div>
-            <div class="contrib-list">
-              <div class="contrib-item"><i class="fas fa-check-circle" style="color:#2563eb;"></i><div>Built <strong>Cat Emotion Recognition System</strong> using MobileNetV2 (CNN) and LSTM networks for MFCC-based audio classification.</div></div>
-              <div class="contrib-item"><i class="fas fa-check-circle" style="color:#2563eb;"></i><div>Architected multi-modal data pipelines processing <strong>MFCC audio features</strong> and image datasets for joint model training.</div></div>
-              <div class="contrib-item"><i class="fas fa-check-circle" style="color:#2563eb;"></i><div>Deployed a scalable <strong>Flask inference API</strong> serving real-time emotion predictions via Streamlit frontend.</div></div>
-            </div>
-
-            <div class="section-label"><i class="fas fa-code"></i> Skills &amp; Technologies</div>
-            <div class="skills-wrap">
-              <span class="skill-bdg"><i class="fas fa-brain"></i> TensorFlow</span>
-              <span class="skill-bdg"><i class="fas fa-project-diagram"></i> CNN / LSTM</span>
-              <span class="skill-bdg"><i class="fas fa-eye"></i> OpenCV</span>
-              <span class="skill-bdg"><i class="fas fa-server"></i> Flask</span>
-              <span class="skill-bdg"><i class="fab fa-python"></i> Python</span>
-              <span class="skill-bdg"><i class="fas fa-music"></i> MFCC / Librosa</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Edunet -->
-        <div class="role-panel" id="exp-1">
-          <div class="panel-hdr">
-            <div class="panel-hdr-left">
-              <div class="panel-hdr-logo"><img src="edunet.webp" alt="Edunet"></div>
-              <div><div class="panel-hdr-role">Front End Web Dev Intern</div><div class="panel-hdr-company">Edunet Foundation</div></div>
-            </div>
-            <button class="panel-close-btn" onclick="closePanel()"><i class="fas fa-times"></i></button>
-          </div>
-          <div class="panel-body">
-            <h1 class="panel-title">Front End Web Dev Intern</h1>
-            <div class="panel-company-row">
-              Edunet Foundation
-              <a href="https://edunetfoundation.org/" target="_blank" style="color:#16a34a;"><i class="fas fa-arrow-up-right-from-square"></i> Visit website</a>
-            </div>
-            <div class="panel-pills">
-              <span class="ppill date"><i class="far fa-calendar-alt"></i> Aug – Oct 2025</span>
-              <span class="ppill loc"><i class="fas fa-map-marker-alt"></i> Remote</span>
-            </div>
-
-            <div class="section-label"><i class="fas fa-chart-line"></i> Key Impact Metrics</div>
-            <div class="metrics-grid">
-              <div class="metric-card"><span class="metric-num">5+</span><span class="metric-lbl">REST API Endpoints Built</span></div>
-              <div class="metric-card"><span class="metric-num purple">1</span><span class="metric-lbl">Full Dashboard Shipped</span></div>
-              <div class="metric-card"><span class="metric-num blue">Real‑time</span><span class="metric-lbl">Live Data Updates</span></div>
-            </div>
-
-            <div class="section-label"><i class="fas fa-star"></i> Key Contributions</div>
-            <div class="contrib-list">
-              <div class="contrib-item"><i class="fas fa-check-circle" style="color:#16a34a;"></i><div>Built a <strong>Smart Productivity Dashboard</strong> with task scheduling, Pomodoro timer, and real-time progress analytics.</div></div>
-              <div class="contrib-item"><i class="fas fa-check-circle" style="color:#16a34a;"></i><div>Implemented <strong>RESTful APIs</strong> using Flask enabling seamless live UI updates and category-based task management.</div></div>
-            </div>
-
-            <div class="section-label"><i class="fas fa-code"></i> Skills &amp; Technologies</div>
-            <div class="skills-wrap">
-              <span class="skill-bdg"><i class="fab fa-html5"></i> HTML5</span>
-              <span class="skill-bdg"><i class="fab fa-css3-alt"></i> CSS3</span>
-              <span class="skill-bdg"><i class="fab fa-js"></i> JavaScript</span>
-              <span class="skill-bdg"><i class="fas fa-server"></i> Flask</span>
-              <span class="skill-bdg"><i class="fas fa-exchange-alt"></i> REST API</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- NIIT -->
-        <div class="role-panel" id="exp-2">
-          <div class="panel-hdr">
-            <div class="panel-hdr-left">
-              <div class="panel-hdr-logo"><img src="NIIT.webp" alt="NIIT"></div>
-              <div><div class="panel-hdr-role">Cybersecurity with AI Intern</div><div class="panel-hdr-company">NIIT Foundation</div></div>
-            </div>
-            <button class="panel-close-btn" onclick="closePanel()"><i class="fas fa-times"></i></button>
-          </div>
-          <div class="panel-body">
-            <h1 class="panel-title">Cybersecurity with AI Intern</h1>
-            <div class="panel-company-row">
-              NIIT Foundation
-              <a href="https://niitfoundation.org/" target="_blank" style="color:#e11d48;"><i class="fas fa-arrow-up-right-from-square"></i> Visit website</a>
-            </div>
-            <div class="panel-pills">
-              <span class="ppill date"><i class="far fa-calendar-alt"></i> Aug – Sep 2025</span>
-              <span class="ppill loc"><i class="fas fa-map-marker-alt"></i> Remote</span>
-            </div>
-
-            <div class="section-label"><i class="fas fa-chart-line"></i> Key Impact Metrics</div>
-            <div class="metrics-grid">
-              <div class="metric-card"><span class="metric-num" style="font-size:1.3rem;">AI</span><span class="metric-lbl">Threat Detection Methods</span></div>
-              <div class="metric-card"><span class="metric-num purple">3+</span><span class="metric-lbl">Vulnerability Tests Run</span></div>
-              <div class="metric-card"><span class="metric-num blue" style="font-size:1.2rem;">Network</span><span class="metric-lbl">Anomaly Analysis</span></div>
-            </div>
-
-            <div class="section-label"><i class="fas fa-star"></i> Key Contributions</div>
-            <div class="contrib-list">
-              <div class="contrib-item"><i class="fas fa-check-circle" style="color:#e11d48;"></i><div>Implemented AI-driven <strong>threat detection methods</strong> to identify network traffic anomalies in test environments.</div></div>
-              <div class="contrib-item"><i class="fas fa-check-circle" style="color:#e11d48;"></i><div>Conducted <strong>vulnerability analysis</strong> on test systems to evaluate AI-based defense strategies.</div></div>
-            </div>
-
-            <div class="section-label"><i class="fas fa-code"></i> Skills &amp; Technologies</div>
-            <div class="skills-wrap">
-              <span class="skill-bdg"><i class="fas fa-shield-alt"></i> Cybersecurity</span>
-              <span class="skill-bdg"><i class="fas fa-robot"></i> AI Defense</span>
-              <span class="skill-bdg"><i class="fas fa-bug"></i> Threat Analysis</span>
-              <span class="skill-bdg"><i class="fas fa-lock"></i> Network Security</span>
-            </div>
-          </div>
-        </div>
-
-      </div><!-- end role-details -->
-    </div>
+    </div><!-- /exp-grid -->
   </div>
-</section>
+</div>
+
+<!-- MOBILE BOTTOM SHEET -->
+<div class="mobile-sheet-backdrop" id="sheetBackdrop" onclick="closeMobileSheet()"></div>
+<div class="mobile-sheet" id="mobileSheet">
+  <div class="sheet-drag" id="sheetDrag">
+    <div class="sheet-drag-handle"></div>
+  </div>
+  <div class="sheet-body" id="sheetBody"></div>
+</div>
 
 <!-- FOOTER -->
 <footer id="main-footer">
@@ -505,29 +598,181 @@
 
 <script src="main.js"></script>
 <script>
-  /* Navbar */
-  const toggle = document.getElementById('menuToggle');
-  const navLinks = document.getElementById('navLinks');
-  toggle?.addEventListener('click', () => navLinks.classList.toggle('open'));
-  document.addEventListener('click', e => { if (!e.target.closest('.navbar')) navLinks.classList.remove('open'); });
+/* ── Navbar ── */
+const toggle = document.getElementById('menuToggle');
+const navLinks = document.getElementById('navLinks');
+toggle?.addEventListener('click', () => navLinks.classList.toggle('open'));
+document.addEventListener('click', e => { if (!e.target.closest('.navbar')) navLinks.classList.remove('open'); });
 
-  /* Experience switcher */
-  function switchExp(idx) {
-    document.querySelectorAll('.tl-item').forEach((t,i) => t.classList.toggle('active', i === idx));
-    document.querySelectorAll('.role-panel').forEach((p,i) => p.classList.toggle('active', i === idx));
-    /* On mobile scroll detail panel into view */
-    if (window.innerWidth <= 768) {
-      setTimeout(() => {
-        document.querySelector('.role-details').scrollIntoView({ behavior:'smooth', block:'start' });
-      }, 100);
-    }
+/* ── Experience Data ── */
+const expData = [
+  {
+    logo: 'Infosys.webp',
+    role: 'Artificial Intelligence Intern',
+    company: 'Infosys Springboard',
+    website: 'https://infyspringboard.onwingspan.com/',
+    date: 'Nov 2025 – Feb 2026',
+    loc: 'Remote',
+    metrics: [
+      { num: '2', cls: '', lbl: 'AI Models Built (CNN + LSTM)' },
+      { num: '95%+', cls: 'purple', lbl: 'Classification Accuracy' },
+      { num: '3', cls: 'blue', lbl: 'Emotion Classes Detected' }
+    ],
+    contribs: [
+      'Built <strong>Cat Emotion Recognition System</strong> using MobileNetV2 (CNN) and LSTM networks for MFCC-based audio classification.',
+      'Architected multi-modal data pipelines processing <strong>MFCC audio features</strong> and image datasets for joint model training.',
+      'Deployed a scalable <strong>Flask inference API</strong> serving real-time emotion predictions via Streamlit frontend.'
+    ],
+    contribColor: '#6366f1',
+    skills: ['TensorFlow','CNN / LSTM','OpenCV','Flask','Python','MFCC / Librosa']
+  },
+  {
+    logo: 'edunet.webp',
+    role: 'Front End Web Dev Intern',
+    company: 'Edunet Foundation',
+    website: 'https://edunetfoundation.org/',
+    date: 'Aug – Oct 2025',
+    loc: 'Remote',
+    metrics: [
+      { num: '5+', cls: '', lbl: 'REST API Endpoints Built' },
+      { num: '1', cls: 'purple', lbl: 'Full Dashboard Shipped' },
+      { num: 'Real‑time', cls: 'blue', lbl: 'Live Data Updates' }
+    ],
+    contribs: [
+      'Built a <strong>Smart Productivity Dashboard</strong> with task scheduling, Pomodoro timer, and real-time progress analytics.',
+      'Implemented <strong>RESTful APIs</strong> using Flask enabling seamless live UI updates and category-based task management.'
+    ],
+    contribColor: '#16a34a',
+    skills: ['HTML5','CSS3','JavaScript','Flask','REST API']
+  },
+  {
+    logo: 'NIIT.webp',
+    role: 'Cybersecurity with AI Intern',
+    company: 'NIIT Foundation',
+    website: 'https://niitfoundation.org/',
+    date: 'Aug – Sep 2025',
+    loc: 'Remote',
+    metrics: [
+      { num: 'AI', cls: '', lbl: 'Threat Detection Methods' },
+      { num: '3+', cls: 'purple', lbl: 'Vulnerability Tests Run' },
+      { num: 'Network', cls: 'blue', lbl: 'Anomaly Analysis' }
+    ],
+    contribs: [
+      'Implemented AI-driven <strong>threat detection methods</strong> to identify network traffic anomalies in test environments.',
+      'Conducted <strong>vulnerability analysis</strong> on test systems to evaluate AI-based defense strategies.'
+    ],
+    contribColor: '#e11d48',
+    skills: ['Cybersecurity','AI Defense','Threat Analysis','Network Security']
+  }
+];
+
+let currentIdx = 0;
+
+function buildDetailHTML(d) {
+  const metricsHTML = d.metrics.map(m =>
+    `<div class="metric-card">
+      <span class="metric-num ${m.cls}">${m.num}</span>
+      <span class="metric-lbl">${m.lbl}</span>
+    </div>`
+  ).join('');
+
+  const contribsHTML = d.contribs.map(c =>
+    `<div class="contrib-item">
+      <i class="fas fa-check-circle" style="color:${d.contribColor}"></i>
+      <div>${c}</div>
+    </div>`
+  ).join('');
+
+  const skillsHTML = d.skills.map(s =>
+    `<span class="skill-bdg">${s}</span>`
+  ).join('');
+
+  return `
+    <div class="detail-title">${d.role}</div>
+    <div class="detail-company-row">
+      ${d.company}
+      <a href="${d.website}" target="_blank"><i class="fas fa-arrow-up-right-from-square"></i> Visit website</a>
+    </div>
+    <div class="detail-pills">
+      <span class="detail-pill date"><i class="far fa-calendar-alt"></i> ${d.date}</span>
+      <span class="detail-pill loc"><i class="fas fa-map-marker-alt"></i> ${d.loc}</span>
+    </div>
+    <div class="det-section-lbl"><i class="fas fa-chart-line"></i> Key Impact Metrics</div>
+    <div class="metrics-grid">${metricsHTML}</div>
+    <div class="det-section-lbl" style="margin-top:4px;"><i class="fas fa-star"></i> Key Contributions &amp; Achievements</div>
+    <div class="contrib-list">${contribsHTML}</div>
+    <div class="det-section-lbl"><i class="fas fa-code"></i> Skills &amp; Technologies</div>
+    <div class="skills-wrap">${skillsHTML}</div>
+  `;
+}
+
+function selectExp(idx) {
+  currentIdx = idx;
+  const d = expData[idx];
+
+  /* Update sidebar cards */
+  document.querySelectorAll('.exp-card').forEach((c, i) => c.classList.toggle('active', i === idx));
+
+  /* Update desktop panel header */
+  document.getElementById('detailLogoImg').src = d.logo;
+  document.getElementById('detailHdrRole').textContent = d.role;
+  document.getElementById('detailHdrCompany').textContent = d.company;
+
+  /* Update desktop panel body */
+  const body = document.getElementById('detailBody');
+  body.innerHTML = buildDetailHTML(d);
+  body.scrollTop = 0;
+
+  /* On mobile open bottom sheet */
+  if (window.innerWidth <= 900) {
+    document.getElementById('sheetBody').innerHTML = buildDetailHTML(d);
+    document.getElementById('mobileSheet').classList.add('show');
+    document.getElementById('sheetBackdrop').classList.add('show');
+    /* Lock body scroll */
+    const sy = window.scrollY;
+    document.body.style.position = 'fixed';
+    document.body.style.top = `-${sy}px`;
+    document.body.style.width = '100%';
+    document.body.dataset.sy = sy;
   }
 
-  /* Close panel (mobile) */
-  function closePanel() {
-    document.querySelectorAll('.role-panel').forEach(p => p.classList.remove('active'));
-    document.querySelectorAll('.tl-item').forEach(t => t.classList.remove('active'));
-  }
+  /* Re-trigger panel animation */
+  const panel = document.getElementById('detailPanel');
+  panel.style.animation = 'none';
+  panel.offsetHeight; // reflow
+  panel.style.animation = '';
+}
+
+function closeDetail() {
+  /* On desktop just dismiss — switch to next */
+  const next = (currentIdx + 1) % expData.length;
+  selectExp(next);
+}
+
+function closeMobileSheet() {
+  document.getElementById('mobileSheet').classList.remove('show');
+  document.getElementById('sheetBackdrop').classList.remove('show');
+  const sy = parseInt(document.body.dataset.sy || '0');
+  document.body.style.position = '';
+  document.body.style.top = '';
+  document.body.style.width = '';
+  window.scrollTo(0, sy);
+}
+
+/* Swipe down to close mobile sheet */
+const sheetDrag = document.getElementById('sheetDrag');
+let touchStartY = 0;
+sheetDrag.addEventListener('touchstart', e => { touchStartY = e.touches[0].clientY; });
+sheetDrag.addEventListener('touchmove', e => {
+  const diff = e.touches[0].clientY - touchStartY;
+  if (diff > 80) closeMobileSheet();
+});
+
+/* Init with first exp on desktop */
+if (window.innerWidth > 900) selectExp(0);
+
+/* Escape key */
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMobileSheet(); });
 </script>
 </body>
 </html>
