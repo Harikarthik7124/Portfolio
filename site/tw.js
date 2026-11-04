@@ -1,0 +1,1 @@
+tailwind.config={darkMode:'class',theme:{extend:{colors:{ink:'rgb(var(--ink-rgb) / <alpha-value>)',paper:'var(--paper)',panel:'var(--panel)',sun:'#F2C230',cream:'#F6F1E7'},fontFamily:{sans:['Inter','sans-serif'],serif:['"Instrument Serif"','serif'],mono:['"JetBrains Mono"','monospace']}}}};
