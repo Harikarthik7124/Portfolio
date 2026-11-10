@@ -4,10 +4,6 @@ COL={'home':('#3358E8','#F6F1E7'),'work':('#DFC87A','#1d1b26'),'projects':('#D9D
      'credentials':('#9CC9F2','#1d1b26'),'about':('#F4C9A0','#1d1b26'),'contact':('#D98574','#1d1b26')}
 EMAIL='aharikarthik7124@gmail.com'; GH='https://github.com/Harikarthik7124'
 HEAD='''<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="@C@">
-<link rel="icon" href="favicon.svg" type="image/svg+xml">
-<link rel="icon" href="favicon.ico" sizes="any">
-<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <title>@T@ · Harikarthik A</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;800;900&family=Instrument+Serif:ital@1&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
@@ -61,22 +57,13 @@ bl=''.join(f'<a href="projects.html" class="pop block p-6 text-[#1d1b26]" style=
 bsec=f'''<section class="bg-[var(--s-rose)] text-ink"><div class="mx-auto max-w-7xl px-5 py-14 md:py-20"><div class="flex flex-wrap items-end justify-between gap-4">{lab('02 · Selected builds')}<a href="projects.html" class="border-b border-ink pb-1 font-mono text-xs font-bold uppercase">All projects ↗</a></div>
 <h2 class="mt-6 text-[clamp(2.5rem,9vw,5.5rem)] font-black leading-[.9] tracking-tighter">Things I’ve built.</h2><div class="mt-10 grid gap-7 md:grid-cols-2 lg:grid-cols-3">{bl}</div></div></section>'''
 mq2=''.join(f'<span class="px-5 text-4xl font-black tracking-tighter sm:text-6xl">{w}</span><span class="text-3xl text-[var(--acc)] sm:text-5xl">✦</span>' for w in ['Python','Flask','FastAPI','TensorFlow','PyTorch','OpenCV','LangGraph','React','PostgreSQL','pgvector','Docker','AWS']*2)
-tsec=f'''<section class="relative overflow-hidden bg-[var(--s-butter)] text-ink"><div class="gl absolute inset-0"></div><div class="relative mx-auto max-w-7xl px-5 pt-14 md:pt-20">{lab('04 · Toolkit')}
+tsec=f'''<section class="relative overflow-hidden bg-[var(--s-butter)] text-ink"><div class="gl absolute inset-0"></div><div class="relative mx-auto max-w-7xl px-5 pt-14 md:pt-20">{lab('03 · Toolkit')}
 <div class="mt-6 grid items-end gap-8 lg:grid-cols-[1.3fr_1fr]"><h2 class="text-[clamp(3rem,11vw,7rem)] font-black leading-[.9] tracking-tighter">Tools change.<br><span class="font-serif font-normal italic tracking-normal text-[var(--acc)]">Thinking scales.</span></h2><p class="text-lg md:text-xl">I pick technology around the system: the constraints, the failure modes, and what will still be understandable six months later.</p></div></div>
 <div class="relative overflow-hidden py-14"><div class="strip py-3" style="background:transparent;border-color:var(--ink)"><div class="track items-center">{mq2}</div></div></div></section>'''
-cta=f'''<section class="relative overflow-hidden bg-[var(--s-tang)] text-ink"><div class="gl absolute inset-0"></div><div class="relative mx-auto grid max-w-7xl items-end gap-10 px-5 py-16 lg:grid-cols-[1.4fr_1fr] md:py-24"><div>{lab('05 · Let’s build')}<h2 class="mt-6 text-[clamp(3rem,12vw,8rem)] font-black leading-[.85] tracking-tighter">Have a hard problem in mind?</h2></div>
+cta=f'''<section class="relative overflow-hidden bg-[var(--s-tang)] text-ink"><div class="gl absolute inset-0"></div><div class="relative mx-auto grid max-w-7xl items-end gap-10 px-5 py-16 lg:grid-cols-[1.4fr_1fr] md:py-24"><div>{lab('04 · Let’s build')}<h2 class="mt-6 text-[clamp(3rem,12vw,8rem)] font-black leading-[.85] tracking-tighter">Have a hard problem in mind?</h2></div>
 <div class="pb-4"><p class="text-xl md:text-2xl">I’m always interested in reliable systems, useful AI, and products that make technical work feel simpler.</p><a href="contact.html" class="mt-8 inline-block rounded-full border-2 border-black bg-[#3358E8] px-7 py-4 font-mono text-sm font-bold text-cream shadow-[4px_4px_0_#000]">Start a conversation ↗</a></div></div></section>'''
-exp=f'''<section class="bg-[var(--s-cream)] text-ink"><div class="mx-auto max-w-7xl px-5 py-14 md:py-20">{lab('06 · Explore the site')}<h2 class="mt-6 text-[clamp(2.5rem,9vw,5.5rem)] font-black leading-[.9] tracking-tighter">Pick a page.</h2><div class="mt-10 grid gap-7 sm:grid-cols-2 lg:grid-cols-3">{tl}</div></div></section>'''
-roles=''.join(f'<li><span class="text-[#8f9bff]">→</span> {r}</li>' for r in ['Backend Developer (Python)','Django Developer','Software Developer'])
-now=f'''<section class="relative overflow-hidden bg-[var(--s-gold)] text-ink"><div class="gl absolute inset-0"></div><div class="relative mx-auto grid max-w-7xl items-center gap-14 px-5 py-14 md:py-20 lg:grid-cols-2 lg:gap-16">
-<div>{lab('03 · Right now')}<h2 class="mt-6 text-[clamp(3.2rem,11vw,7.5rem)] font-black leading-[.85] tracking-tighter">Python<br>backends<br><span class="font-serif font-normal italic tracking-normal text-[var(--acc)]">for real products.</span></h2>
-<p class="mt-8 max-w-lg text-lg leading-relaxed md:text-xl">I’m open to roles where I can build and ship Python backends, REST APIs, and AI-powered features end to end.</p>
-<a href="projects.html" class="mt-8 inline-block border-b border-ink pb-1 font-mono text-xs font-bold uppercase">See my projects ↗</a></div>
-<div class="relative lg:rotate-1"><div class="absolute inset-0 translate-x-3 translate-y-3 bg-[#FBE9B3] md:translate-x-4 md:translate-y-4"></div>
-<div class="relative min-h-[20rem] bg-[#0f1118] font-mono text-[#e8e6f0]"><div class="flex items-center gap-2 border-b border-white/10 px-5 py-4"><span class="h-3 w-3 rounded-full bg-[#ff5f57]"></span><span class="h-3 w-3 rounded-full bg-[#febc2e]"></span><span class="h-3 w-3 rounded-full bg-[#28c840]"></span><span class="ml-3 text-[11px] opacity-60">harikarthik@systems ~</span></div>
-<div class="space-y-8 p-6 text-sm sm:p-10 sm:text-base"><div><p><span class="text-[#F2C230]">$</span> job-seeking --roles</p><ul class="mt-4 space-y-3 pl-4">{roles}</ul></div>
-<div><p><span class="text-[#F2C230]">$</span> status</p><p class="mt-4 pl-4 text-[#6ee7b7]"><span class="mr-2 inline-block h-2 w-2 rounded-full bg-[#2f6f57]"></span>open to opportunities</p></div></div></div></div></div></section>'''
-REST=persp+bsec+now+tsec+cta+exp
+exp=f'''<section class="bg-[var(--s-cream)] text-ink"><div class="mx-auto max-w-7xl px-5 py-14 md:py-20">{lab('05 · Explore the site')}<h2 class="mt-6 text-[clamp(2.5rem,9vw,5.5rem)] font-black leading-[.9] tracking-tighter">Pick a page.</h2><div class="mt-10 grid gap-7 sm:grid-cols-2 lg:grid-cols-3">{tl}</div></div></section>'''
+REST=persp+bsec+tsec+cta+exp
 home=f'''<section class="band relative overflow-hidden"><div class="gl absolute inset-0"></div>
 <div class="relative mx-auto grid max-w-7xl items-end gap-8 px-5 pt-12 lg:grid-cols-[1.4fr_1fr] md:pt-24"><div class="pb-10 md:pb-16">
 <p class="mb-6 flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-wider"><span class="h-2 w-2 rounded-full bg-cream"></span>AI/ML Engineer · Chennai, India</p>
@@ -133,7 +120,7 @@ link('5G Session Manager',video='img/projects/5G.mp4',imgs=['task-preview.png'])
 link('AutoEval',imgs=['autoeval-preview.png'])
 link('Trustloop AI – Student Grievance',imgs=['trustloop-preview.png'])
 link('Cat Emotion Detection',imgs=['cat-preview.png'])
-link('Trustloop AI – Student Grievance',src='https://github.com/Seshadriccc/google')   # add live='...' or demo='...' here if you have them
+# link('Trustloop AI – Student Grievance',src='...',live='...',demo='...')
 from collections import Counter
 cnt=Counter(x for p in P for x in p['t']); alltags=sorted(cnt,key=str.lower); popular=[k for k,_ in cnt.most_common(6)]
 def proj(i,p):
@@ -171,10 +158,7 @@ tool+=f'<div class="overflow-hidden py-14"><div class="strip py-3"><div class="t
 page('toolkit','Toolkit',tool+f'<main class="mx-auto max-w-7xl px-5 pb-16"><div class="grid gap-7 sm:grid-cols-2">{tc}</div></main>')
 
 # ---------- CREDENTIALS ----------
-C=[('HackerRank','HackerRank Orchestrate',"Participated in Roche's hiring challenge, gaining hands-on experience in problem-solving, solution design, AI-based interviews, and working under time constraints. Improved my ability to analyze requirements and develop practical solutions.",'hackerrank_orchestrate.png','#DFC87A','2026'),
-('Monolith Research &amp; Training Labs','Game Development Course','Built interactive games using Unity and Unreal Engine, covering game physics, scripting, and 3D asset integration.','Game.jpeg','#B9E4CC','2025'),
-('Monolith Research &amp; Training Labs','Hands-on AR/VR Development','Explored AR/VR development, building immersive experiences using AR/VR SDKs and spatial computing concepts.','AR_VR.jpeg','#D9D0E8','2025'),
-('IITM Pravartak','LEAP Program Winner','Built an Arduino-based smart heater with automatic control.','leap.png','#D9D0E8',''),
+C=[('IITM Pravartak','LEAP Program Winner','Built an Arduino-based smart heater with automatic control.','leap.png','#D9D0E8',''),
 ('AWS','AWS ML Foundations','Learned core machine learning concepts and AWS basics.','aws-ml.png','#B9E4CC',''),
 ('Nunnari Labs','Generative AI Prompt Engineering','Learned generative AI concepts and LLM-based applications.','genai.png','#F4C9A0',''),
 ('Vaan Megam','5G Networks','Learned the core of 5G wireless networks and topologies.','5g.png','#9CC9F2',''),
